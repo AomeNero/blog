@@ -1,0 +1,108 @@
+# 配置说明见主题文档
+# 博客配置
+keywords: Blog,博客,Hexo,AomeNero
+author: AomeNero
+description: A simple and beautiful blog
+defaultTheme: default # 可选 light、dark 或 default
+
+# 图标
+# 如果尺寸不对,请编辑 /source/css/style.styl
+favicon: /images/favicon.webp
+avatar: /images/logo.webp
+logo_dir: /images/logo@2x.webp
+logo_style: width:220px;
+
+# 全站版权设置
+copyright:
+  # 若 `show` 设为 true,会在每篇文章底部添加版权声明。也可在单篇文章的 front-matter 中单独设置。详见文档
+  # 例如:
+  # ---
+  # title: 文章标题
+  # copyright: "保留所有权利"
+  # author: "张三、李四"
+  # ---
+  # ---
+  # title: 文章标题
+  # copyright: disabled
+  # ---
+  show: true
+  # 默认版权声明
+  default: ''
+  # 是否在版权声明中显示文章作者
+  show_author: true
+
+# 站点页脚
+footbar:
+  # 版权声明,也可用作页脚备注
+  copyright:
+  # 对于中国用户，如果你有网站备案：
+  beian:
+  gongan:
+
+# 社交链接
+# 键是 font-awesome 6 的图标名,值是对应链接
+# mail 除外。
+social:
+  github: https://github.com/AomeNero/blog
+  mail: yotianya@foxmail.com
+  zhihu:
+  qq:
+  twitter:
+  instagram:
+  rss:
+  facebook:
+  weibo:
+
+# 导航菜单
+menu:
+  Home: /
+  Archives: /archives
+  Tags: /tags
+  About: /about
+  Links: /links
+
+# 导航栏右侧按钮
+rightbtn:
+  back: true
+  search: true # 搜索框代码感谢 Icarus
+  avatar: true
+  darkLightToggle: true # 明暗主题切换开关
+
+# 其他设置
+useSummary: false # 开启后将使用自动生成的摘要,而非你配置的 <!-- more --> 来预览文章
+
+useTagCloud: false # 使用标签云代替标签列表
+tocMaxDepth: 6 # 设为 0 则不生成目录(toc),最大为 6
+
+# 评论
+always_enable_comments: false # 始终启用评论
+
+duoshuo:
+disqus:
+gentie:
+# Valine 评论 https://valine.js.org
+valine:
+  enable: false # 如需使用 Valine,请设为 true
+  appid: # 你的 leancloud appid
+  appkey: # 你的 leancloud appkey
+  notify: false # true/false:邮件通知 !!!测试,谨慎使用。 https://github.com/xCss/Valine/wiki/Valine-%E8%AF%84%E8%AE%BA%E7%B3%BB%E7%BB%9F%E4%B8%AD%E7%9A%84%E9%82%AE%E4%BB%B6%E6%8F%90%E9%86%92%E8%AE%BE%E7%BD%AE
+  verify: false # true/false:验证码
+  avatar: mm # 头像样式 https://github.com/xCss/Valine/wiki/avatar-setting-for-valine
+  placeholder: hello, world # 评论框占位文字
+gitment:
+  enable: false
+  owner: 'Your GitHub ID'
+  repo: 'Repo to store comments'
+  client_id: 'Your client ID'
+  client_secret: 'Your client secret'
+gitalk:
+  enable: false
+  owner: 'Your GitHub ID'
+  repo: 'Repo to store comments'
+  client_id: 'Your client ID'
+  client_secret: 'Your client secret'
+
+# 百度统计设置
+# 请访问 https://tongji.baidu.com/
+# 获取统计 JS 代码放入 AomeNero/source/js/baidu-tongji.js
+Baidutongji: false
