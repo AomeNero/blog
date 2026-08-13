@@ -53,7 +53,7 @@ pnpm --dir themes/AomeNero --ignore-workspace install
 pnpm --dir themes/AomeNero --ignore-workspace build
 
 # 3. 启动本地预览
-pnpm server          # → http://localhost:4000
+hexo server          # → http://localhost:4000
 ```
 
 > ⚠️ 主题的 `source/js_complied/bundle.{js,css}` 是构建产物且被 gitignore,**克隆后必须先跑上面的 build**,否则页面没样式/脚本。
@@ -67,6 +67,26 @@ pnpm server          # → http://localhost:4000
 | 自定义页面 | 在 `source/<名字>/index.md` 新建,front-matter 至少写 `title` |
 
 页面(如关于、友链)用 `page` 布局;归档 / 标签 / 分类由 Hexo 插件自动生成,无需手建。友链卡片:在友链页正文写 `<div class="friend-link" data-avatar="..." data-href="..." data-title="..." data-description="..."></div>`,前端 JS 会渲染成卡片。
+
+## Hexo 常用命令
+
+本项目用 pnpm 管理,Hexo 命令通过 `pnpm exec hexo ...` 运行(也可用 `npx hexo ...`)。`package.json` 里还预置了几个快捷脚本(用 `pnpm <脚本名>` 调用):
+
+| 操作 | 命令 |
+|------|------|
+| 新建文章 | `pnpm exec hexo new "标题"` |
+| 新建页面 | `pnpm exec hexo new page about` |
+| 新建草稿 | `pnpm exec hexo new draft "标题"` |
+| 把草稿发布为文章 | `pnpm exec hexo publish "标题"` |
+| 生成静态文件 | `pnpm run build`(等价 `hexo generate` / `hexo g`) |
+| 本地预览 | `pnpm server`(等价 `hexo server` / `hexo s`,→ http://localhost:4000,自动监听改动并刷新) |
+| 清理生成物与缓存 | `pnpm run clean`(等价 `hexo clean`) |
+| 部署 | `pnpm run deploy`(等价 `hexo deploy` / `hexo d`) |
+| 查看 Hexo 版本 | `pnpm exec hexo version` |
+
+> **日常写作流程**:写/改文章 → `pnpm server` 预览(自动刷新)→ 满意后 `pnpm run build` 生成。
+> 若出现样式/脚本异常或缓存怪问题,先 `pnpm run clean` 再 `pnpm run build`。
+> 改了主题前端源码(`themes/AomeNero/src/`)需另外 `pnpm --dir themes/AomeNero --ignore-workspace build` 重新打包。
 
 ## 主题说明(AomeNero)
 

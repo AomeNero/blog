@@ -2,7 +2,7 @@
 # 博客配置
 keywords: Blog,博客,Hexo,AomeNero
 author: AomeNero
-description: A simple and beautiful blog
+description: AomeNero's Blog
 defaultTheme: default # 可选 light、dark 或 default
 
 # 图标
@@ -34,9 +34,9 @@ copyright:
 # 站点页脚
 footbar:
   # 版权声明,也可用作页脚备注
-  copyright:
+  copyright: 采用 CC BY-NC-SA 4.0 许可，转载请注明出处.
   # 对于中国用户，如果你有网站备案：
-  beian:
+  beian: 鄂ICP备2026041732号
   gongan:
 
 # 社交链接
@@ -45,12 +45,12 @@ footbar:
 social:
   github: https://github.com/AomeNero/blog
   mail: yotianya@foxmail.com
-  zhihu:
-  qq:
-  twitter:
+  zhihu: https://www.zhihu.com/people/AomeNero
+  qq: 56932422
+  twitter: https://x.com/NeroAck
   instagram:
   rss:
-  facebook:
+  facebook: 
   weibo:
 
 # 导航菜单

@@ -1,3 +1,9 @@
+
+
+---
+title: 设计字符Logo
+---
+
 # AomeNero
 
 > 终端欢迎横幅(来自 `themes/AomeNero/includes/tasks/welcome.js`)的彩色 ASCII 艺术版。每个字母一行一个颜色,共 8 色。
