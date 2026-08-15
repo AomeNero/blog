@@ -5,7 +5,8 @@ include toc
   .sidebar-top
     .logo-title
       .title
-        img(src=url_for(theme.logo_dir), style=theme.logo_style, alt="favicon")
+        .logo-avatar
+          img(src=url_for(theme.logo_dir), alt="favicon")
         h3(title="")
           a(href="/")= config.title
         if theme.description

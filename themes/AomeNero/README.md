@@ -63,3 +63,7 @@ pnpm format     # 格式化代码
 
 Author: **AomeNero** &lt;yotianya@foxmail.com&gt;  
 License: MIT
+
+## 致谢
+
+- 侧栏动态头像基于 [LaoA-GrokBot](https://github.com/zhulin025/LaoA-GrokBot) 的表情数据制作（MIT License）

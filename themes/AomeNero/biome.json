@@ -8,7 +8,7 @@
     "lineEnding": "lf",
     "lineWidth": 120,
     "attributePosition": "auto",
-    "ignore": ["**/*.min.js", "**/*.min.css", "source/js_complied"]
+    "ignore": ["**/*.min.js", "**/*.min.css", "source/js_complied", "src/components/avatar-data.ts"]
   },
   "organizeImports": { "enabled": true },
   "linter": { "enabled": true, "rules": { "recommended": true } },

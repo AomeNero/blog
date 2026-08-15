@@ -10,7 +10,7 @@ defaultTheme: default # 可选 light、dark 或 default
 favicon: /images/favicon.webp
 avatar: /images/logo.webp
 logo_dir: /images/logo@2x.webp
-logo_style: width:220px;
+asset_version: 5 # 修改 bundle.js/css 后递增,用于强制浏览器刷新缓存
 
 # 全站版权设置
 copyright:

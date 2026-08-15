@@ -26,6 +26,61 @@
       margin: 0 auto;
     }
 
+    // 动态头像占位容器：桌面 220px / 移动端 100px，同时约束 JS 未加载时的静态回退图
+    .logo-avatar {
+      width: 220px;
+      height: 220px;
+      margin: 0 auto;
+
+      img {
+        display: block;
+        width: 100%;
+        height: 100%;
+        object-fit: contain;
+      }
+    }
+
+    .la-avatar {
+      display: block;
+      width: 100%;
+      height: 100%;
+      border-radius: 50%;
+      overflow: hidden;
+      position: relative;
+
+      svg {
+        width: 100%;
+        height: 100%;
+        display: block;
+      }
+
+      .la-breath {
+        transform-box: fill-box;
+        transform-origin: center;
+        animation: la-avatar-breathe 3.4s ease-in-out infinite alternate;
+      }
+
+      .la-body {
+        fill: #2f86ed;
+      }
+
+      .la-eye {
+        fill: #fffdf7;
+      }
+
+      .la-act-bounce {
+        animation: la-avatar-bounce 0.75s cubic-bezier(0.3, 0.8, 0.4, 1);
+      }
+
+      .la-act-shake {
+        animation: la-avatar-shake 0.65s ease;
+      }
+
+      .la-act-squish {
+        animation: la-avatar-squish 0.8s ease;
+      }
+    }
+
     .title {
       h3 {
         text-transform: none;
@@ -83,8 +138,9 @@
       margin-top: 0;
 
       .title {
-        img {
+        .logo-avatar {
           width: 100px;
+          height: 100px;
         }
 
         h3 {
@@ -92,6 +148,67 @@
         }
       }
     }
+  }
+}
+
+@keyframes la-avatar-breathe {
+  from {
+    transform: scale(1);
+  }
+  to {
+    transform: scale(1.02);
+  }
+}
+
+@keyframes la-avatar-bounce {
+  0%,
+  100% {
+    transform: translateY(0) scale(1);
+  }
+  38% {
+    transform: translateY(-30px) scale(0.95, 1.05);
+  }
+  60% {
+    transform: translateY(3px) scale(1.08, 0.9);
+  }
+}
+
+@keyframes la-avatar-shake {
+  0%,
+  100% {
+    transform: rotate(0);
+  }
+  20% {
+    transform: rotate(-13deg);
+  }
+  40% {
+    transform: rotate(13deg);
+  }
+  60% {
+    transform: rotate(-10deg);
+  }
+  80% {
+    transform: rotate(8deg);
+  }
+}
+
+@keyframes la-avatar-squish {
+  0%,
+  100% {
+    transform: scale(1);
+  }
+  30% {
+    transform: scale(1.15, 0.72) translateY(20px);
+  }
+  60% {
+    transform: scale(0.86, 1.18) translateY(-14px);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .sidebar .la-avatar .la-breath,
+  .sidebar .la-avatar [class*='la-act-'] {
+    animation: none;
   }
 }
 
