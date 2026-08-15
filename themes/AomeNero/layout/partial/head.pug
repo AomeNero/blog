@@ -22,12 +22,12 @@ meta#site_data_static(data-url=url_for("/"))
 meta(name="renderer", content="webkit")
 link(rel="shortcut icon", type="image/x-icon", href=url_for(theme.favicon))
 
-link(rel="stylesheet", href=url_for("js_complied/bundle.css"))
+link(rel="stylesheet", href=url_for("js_complied/bundle.css") + "?v=" + theme.asset_version)
 link(rel="stylesheet", href=url_for("css/font-awesome.min.css"))
 link(rel="stylesheet", href=url_for("css/fonts.css"))
 link(rel="alternate", type="application/atom+xml", title="ATOM 1.0", href="/atom.xml")
 
-script(src=url_for("js_complied/bundle.js"))
+script(src=url_for("js_complied/bundle.js") + "?v=" + theme.asset_version)
 if theme.Baidutongji
   script(src=url_for("js/baidu-tongji.js"))
 
