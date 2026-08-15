@@ -1,5 +1,7 @@
 mixin make_post(item, is_detail)
   .post.animated
+    if item.banner
+      img.post-banner(src=url_for(item.banner), alt=item.title)
     .post-title
       h3
         if is_detail

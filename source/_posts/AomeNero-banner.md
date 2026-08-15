@@ -1,10 +1,11 @@
-
-
 ---
 title: 设计字符Logo
+banner: /images/banner-1.webp
 ---
 
-# AomeNero
+
+
+Agent非常适合设计制作ASCII 艺术字，直接给模板就能学习修改字符，用来做CLI程序Logo打印或者CRT调试打印都很有意思。
 
 > 终端欢迎横幅(来自 `themes/AomeNero/includes/tasks/welcome.js`)的彩色 ASCII 艺术版。每个字母一行一个颜色,共 8 色。
 

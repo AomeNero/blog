@@ -21,6 +21,16 @@
   background-color: var(--secondary);
   margin: 30px;
 
+  // 文章 banner（front-matter: banner: /images/xxx.webp），渲染在标题上方
+  // 上限 840px、左对齐（与正文边缘一致），按 1.91:1 等比缩放，不裁切
+  .post-banner {
+    display: block;
+    width: 100%;
+    max-width: 840px;
+    height: auto;
+    margin-bottom: 20px;
+  }
+
   .post-title {
     h1 {
       text-transform: none;

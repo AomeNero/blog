@@ -53,6 +53,7 @@ pnpm --dir themes/AomeNero --ignore-workspace install
 pnpm --dir themes/AomeNero --ignore-workspace build
 
 # 3. 启动本地预览
+hexo generate 
 hexo server          # → http://localhost:4000
 ```
 
@@ -65,6 +66,7 @@ hexo server          # → http://localhost:4000
 | 新建文章 | `hexo new "标题"`,然后编辑 `source/_posts/标题.md` |
 | 生成静态文件 | `pnpm run build`(等价 `hexo generate`) |
 | 自定义页面 | 在 `source/<名字>/index.md` 新建,front-matter 至少写 `title` |
+| 文章 banner | 图片放 `source/images/`,front-matter 写 `banner: /images/文件名`,文章页标题上方自动渲染 |
 
 页面(如关于、友链)用 `page` 布局;归档 / 标签 / 分类由 Hexo 插件自动生成,无需手建。友链卡片:在友链页正文写 `<div class="friend-link" data-avatar="..." data-href="..." data-title="..." data-description="..."></div>`,前端 JS 会渲染成卡片。
 
