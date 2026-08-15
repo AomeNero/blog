@@ -1,6 +1,6 @@
 ---
 title: 设计字符Logo
-banner: /images/banner-1.webp
+banner: /images/banner-20.webp
 ---
 
 
