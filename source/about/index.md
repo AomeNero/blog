@@ -2,6 +2,7 @@
 title: 关于
 date: 2026-08-09
 desc: 关于 AomeNero 和这个博客
+comments: false
 ---
 
 ## 关于我

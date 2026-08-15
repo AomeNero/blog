@@ -2,6 +2,7 @@
 title: 友链
 date: 2026-08-09
 desc: 朋友们
+comments: false
 ---
 
 > 欢迎交换友链!可通过「关于」页的联系方式找我。
