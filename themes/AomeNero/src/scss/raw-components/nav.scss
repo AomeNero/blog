@@ -17,7 +17,10 @@
   .nav {
     list-style: none;
     padding: 18px 0 0 10px;
-    font-size: 14px;
+    // --font-nav / --font-nav-size / --font-nav-ls 由 _config.yml 的 font.nav 注入
+    font-family: var(--font-nav, inherit);
+    font-size: var(--font-nav-size, 14px);
+    letter-spacing: var(--font-nav-ls, normal);
     max-width: 360px;
     overflow-x: auto;
     overflow-y: hidden;

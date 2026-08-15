@@ -27,6 +27,32 @@ link(rel="stylesheet", href=url_for("css/font-awesome.min.css"))
 link(rel="stylesheet", href=url_for("css/fonts.css"))
 link(rel="alternate", type="application/atom+xml", title="ATOM 1.0", href="/atom.xml")
 
+//- 字体配置注入为 CSS 变量，SCSS 中以 var(--font-*, 默认值) 消费
+if theme.font && theme.font.enable
+  -
+    var f = theme.font, g = f.global || {}, h = f.headings || {}, n = f.nav || {}, p = f.post || {}, c = f.code || {};
+    var vars = [];
+    if (g.family) vars.push('--font-body: ' + g.family);
+    if (g.size) { vars.push('--font-base-size: ' + g.size); vars.push('--font-body-size: ' + g.size); }
+    if (g.line_height) vars.push('--font-body-lh: ' + g.line_height);
+    if (h.family) vars.push('--font-heading: ' + h.family);
+    if (h.line_height) vars.push('--font-heading-lh: ' + h.line_height);
+    ['h1', 'h2', 'h3', 'h4', 'h5', 'h6'].forEach(function (k) {
+      var v = h[k + '_size'];
+      if (v) vars.push('--font-' + k + '-size: ' + v);
+    });
+    if (n.family) vars.push('--font-nav: ' + n.family);
+    if (n.size) vars.push('--font-nav-size: ' + n.size);
+    if (n.letter_spacing) vars.push('--font-nav-ls: ' + n.letter_spacing);
+    if (p.family) vars.push('--font-post: ' + p.family);
+    if (p.size) vars.push('--font-post-size: ' + p.size);
+    if (p.line_height) vars.push('--font-post-lh: ' + p.line_height);
+    if (p.title_size) vars.push('--font-post-title-size: ' + p.title_size);
+    if (c.family) vars.push('--font-code: ' + c.family);
+    if (c.size) vars.push('--font-code-size: ' + c.size);
+  if vars.length
+    style!= ':root{' + vars.join(';') + ';}'
+
 script(src=url_for("js_complied/bundle.js") + "?v=" + theme.asset_version)
 if theme.Baidutongji
   script(src=url_for("js/baidu-tongji.js"))
