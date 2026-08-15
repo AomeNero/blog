@@ -67,6 +67,8 @@ hexo server          # → http://localhost:4000
 | 生成静态文件 | `pnpm run build`(等价 `hexo generate`) |
 | 自定义页面 | 在 `source/<名字>/index.md` 新建,front-matter 至少写 `title` |
 | 文章 banner | 图片放 `source/images/`,front-matter 写 `banner: /images/文件名`,文章页标题上方自动渲染 |
+| 页面评论开关 | 页面默认开评论(Hexo 内置默认),不想要就在 front-matter 写 `comments: false` |
+| 字体配置 | 主题 `themes/AomeNero/_config.yml` 的 `font` 块(全局/标题/导航/文章/代码),`enable: false` 回落内置方案 |
 
 页面(如关于、友链)用 `page` 布局;归档 / 标签 / 分类由 Hexo 插件自动生成,无需手建。友链卡片:在友链页正文写 `<div class="friend-link" data-avatar="..." data-href="..." data-title="..." data-description="..."></div>`,前端 JS 会渲染成卡片。
 
@@ -92,9 +94,9 @@ hexo server          # → http://localhost:4000
 
 ## 主题说明(AomeNero)
 
-主要特性:明暗模式切换、Ajax 无刷新切页、模糊搜索框、文章目录(TOC)、Gitalk 评论、标签云、多语言、友链卡片、移动端适配等。主题源码注释已汉化(技术术语保留英文)。
+主要特性:明暗模式切换、Ajax 无刷新切页、模糊搜索框、文章目录(TOC)、评论系统(Valine 等,见主题配置)、标签云、多语言、友链卡片、移动端适配、侧栏动态头像、文章 banner、字体配置化等。主题源码注释已汉化(技术术语保留英文)。
 
-修改主题前端(`themes/AomeNero/src/`)后,需在主题目录重新构建:
+修改主题前端(`themes/AomeNero/src/`)后,需在主题目录重新构建,并把主题 `_config.yml` 的 `asset_version` 加一(强制浏览器拉取新 bundle,否则访客可能看到旧样式):
 
 ```bash
 pnpm --dir themes/AomeNero --ignore-workspace build

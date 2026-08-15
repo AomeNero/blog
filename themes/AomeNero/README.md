@@ -12,10 +12,13 @@ AomeNero 的个人博客主题。前端 JS 打包后仅约 40KB，加载极快�
 - 多语言（I18n）支持
 - 可选搜索框（基于 Fuse.js 模糊搜索）
 - 可选标签云
-- Gitalk 评论支持
+- 评论系统支持（Valine / Gitalk / Gitment 等，见 `_config.yml`）
 - Ajax 无刷新切换页面，减少视觉噪音
 - 移动端适配
 - 文章版权声明、字数统计、社交账号、备案号、百度统计
+- 侧栏动态头像（LaoA GrokBot 表情）
+- 文章 banner（front-matter `banner:` 字段）
+- 字体配置化（`_config.yml` 的 `font` 块，渲染时注入 CSS 变量）
 
 ## 安装
 
@@ -50,6 +53,13 @@ pnpm build      # 编译 src -> source/js_complied/bundle.{js,css}
 pnpm watch      # 监听 src 自动重新编译
 pnpm format     # 格式化代码
 ```
+
+> 构建 bundle 后记得把 `_config.yml` 的 `asset_version` 加一，
+> 强制浏览器放弃旧缓存（`head.pug` 以 `?v=` 引用 bundle）。
+
+字体配置：`_config.yml` 的 `font` 块在渲染时由 `head.pug` 注入为
+`:root` CSS 变量（`--font-*`），SCSS 侧以 `var(--font-*, 内置默认值)` 消费；
+`enable: false` 时全部回落内置 Open Sans 方案。
 
 ## 目录结构
 
