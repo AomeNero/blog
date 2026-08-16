@@ -1,0 +1,136 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>502 · AomeNero's Blog</title>
+<script>
+(function(){var t=null;try{t=localStorage.getItem('theme')}catch(e){}
+if(t!=='dark'&&t!=='light')t=window.matchMedia&&matchMedia('(prefers-color-scheme: dark)').matches?'dark':'light';
+document.documentElement.setAttribute('data-theme',t)})();
+</script>
+<style>
+:root{--bg:#fff;--fg:#282828;--muted:#8a8a8a;--accent:#4786d6;--num:rgba(71,134,214,.32);--btn-bg:#fff}
+html[data-theme=dark]{--bg:#161616;--fg:#eee;--muted:#7a7a7a;--accent:#b5ceff;--num:rgba(181,206,255,.28);--btn-bg:#161616}
+*{box-sizing:border-box;margin:0;padding:0}
+html,body{height:100%}
+body{background:var(--bg);color:var(--fg);display:flex;flex-direction:column;align-items:center;justify-content:center;
+gap:18px;padding:24px;text-align:center;font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","PingFang SC","Hiragino Sans GB","Microsoft YaHei",sans-serif;
+transition:background .8s,color .8s;overflow:hidden}
+a{color:inherit;text-decoration:none}
+.site{position:fixed;top:18px;left:50%;transform:translateX(-50%);font-size:13px;letter-spacing:1px;color:var(--muted)}
+.stage{position:relative;width:min(64vw,340px);height:min(64vw,340px);display:grid;place-items:center;cursor:pointer;user-select:none;-webkit-tap-highlight-color:transparent}
+.code{position:absolute;font-size:min(34vw,180px);font-weight:800;line-height:1;letter-spacing:.14em;margin-right:-.14em; /* 抵消 letter-spacing 尾随空隙,保证字形真正居中 */
+color:transparent;-webkit-text-stroke:3px var(--num);pointer-events:none;font-variant-numeric:tabular-nums}
+svg{position:relative;width:62%;height:62%;overflow:visible}
+.idle,.breath{transform-box:fill-box;transform-origin:center}
+.breath{animation:breathe 3.4s ease-in-out infinite alternate}
+.idle-shake{animation:摇头 2.8s ease-in-out infinite}
+.idle-sway{animation:sway 4.2s ease-in-out infinite}
+.body{fill:#2f86ed}.eye{fill:#fffdf7}
+.act{transform-box:fill-box;transform-origin:center}
+.act-bounce{animation:act-bounce .75s cubic-bezier(.3,.8,.4,1)}
+.act-shake{animation:act-shake .65s ease}
+.act-squish{animation:act-squish .8s ease}
+h1{font-size:26px;font-weight:700;letter-spacing:2px}
+.desc{color:var(--muted);font-size:15px;line-height:1.7;max-width:34em}
+.btn{display:inline-block;margin-top:6px;padding:9px 26px;border:1.5px solid var(--accent);border-radius:999em;
+color:var(--accent);background:var(--btn-bg);font-size:15px;cursor:pointer;transition:background .25s,color .25s}
+.btn:hover{background:var(--accent);color:var(--bg)}
+.foot{position:fixed;bottom:14px;left:0;right:0;font-size:12px;color:var(--muted)}
+@keyframes breathe{from{transform:scale(1)}to{transform:scale(1.02)}}
+@keyframes 摇头{0%,100%{transform:rotate(0)}20%{transform:rotate(-9deg)}40%{transform:rotate(9deg)}60%{transform:rotate(-7deg)}80%{transform:rotate(6deg)}}
+@keyframes sway{0%,100%{transform:rotate(0) translateY(0)}30%{transform:rotate(5deg) translateY(4px)}60%{transform:rotate(-5deg) translateY(2px)}}
+@keyframes act-bounce{0%,100%{transform:translateY(0) scale(1)}38%{transform:translateY(-30px) scale(.95,1.05)}60%{transform:translateY(3px) scale(1.08,.9)}}
+@keyframes act-shake{0%,100%{transform:rotate(0)}20%{transform:rotate(-13deg)}40%{transform:rotate(13deg)}60%{transform:rotate(-10deg)}80%{transform:rotate(8deg)}}
+@keyframes act-squish{0%,100%{transform:scale(1)}30%{transform:scale(1.15,.72) translateY(20px)}60%{transform:scale(.86,1.18) translateY(-14px)}}
+@media (prefers-reduced-motion:reduce){.breath,.idle-shake,.idle-sway,.act-bounce,.act-shake,.act-squish{animation:none}}
+</style>
+</head>
+<body>
+<a class="site" href="/">AomeNero&rsquo;s Blog</a>
+<div class="stage" id="stage" title="点我一下试试">
+  <div class="code">502</div>
+  <svg viewBox="-28 -28 285 285" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="GrokBot 小机器人">
+    <defs><clipPath id="lc"><path d="M228.541 114.228C228.541 130.133 225.184 145.994 218.738 160.534C212.674 174.217 203.904 186.669 193.065 196.988C155.933 232.34 99.497 238.596 55.5255 212.24C45.097 205.99 35.6851 198.072 27.7451 188.866C19.1926 178.953 12.3686 167.569 7.65781 155.351C2.60712 142.264 0 128.257 0 114.228C0 98.3219 3.35751 82.4611 9.80315 67.9215C15.8672 54.2382 24.6377 41.7862 35.4767 31.4668C72.6081 -3.88483 129.044 -10.1413 173.016 16.2153C183.444 22.4653 192.856 30.3829 200.796 39.5896C209.349 49.5018 216.173 60.8859 220.883 73.1037C225.934 86.1906 228.541 100.198 228.541 114.228Z"/></clipPath></defs>
+    <g class="idle idle-sway">
+      <g class="breath">
+        <g class="act" id="actor" clip-path="url(#lc)">
+          <path class="body" d="M228.541 114.228C228.541 130.133 225.184 145.994 218.738 160.534C212.674 174.217 203.904 186.669 193.065 196.988C155.933 232.34 99.497 238.596 55.5255 212.24C45.097 205.99 35.6851 198.072 27.7451 188.866C19.1926 178.953 12.3686 167.569 7.65781 155.351C2.60712 142.264 0 128.257 0 114.228C0 98.3219 3.35751 82.4611 9.80315 67.9215C15.8672 54.2382 24.6377 41.7862 35.4767 31.4668C72.6081 -3.88483 129.044 -10.1413 173.016 16.2153C183.444 22.4653 192.856 30.3829 200.796 39.5896C209.349 49.5018 216.173 60.8859 220.883 73.1037C225.934 86.1906 228.541 100.198 228.541 114.228Z"/>
+          <g id="w0"><path class="eye" id="e0"/></g>
+          <g id="w1"><path class="eye" id="e1"/></g>
+        </g>
+      </g>
+    </g>
+  </svg>
+</div>
+<h1>世界偶尔也会失联，<br>等一等，它会重新回答。</h1>
+<p class="desc">服务暂时失去连接，请稍后再试。</p>
+<a class="btn" id="btn" href="/">返回首页</a>
+<p class="foot">&copy; AomeNero &middot; 502 Bad Gateway</p>
+<script>
+(function(){
+"use strict";
+var POOL=[[[[86.1,124.8],[89.2,124.9],[92.1,125.8],[94.7,127.3],[96.9,129.4],[98.5,131.9],[99.5,134.8],[100.1,137.7],[100.6,140.7],[101,143.7],[101.5,146.7],[102.1,149.7],[102.6,152.7],[103.2,155.6],[103.8,158.6],[104.4,161.6],[105.1,164.5],[105.8,167.5],[106.5,170.4],[106.7,173.4],[106,176.4],[104.4,178.9],[102,180.8],[99.3,182],[96.3,182.5],[93.2,182.2],[90.3,181.4],[87.7,180],[85.3,178.1],[83.5,175.7],[82.4,172.9],[81.7,170],[81,167],[80.3,164.1],[79.7,161.1],[79.1,158.1],[78.5,155.1],[77.9,152.2],[77.4,149.2],[76.9,146.2],[76.4,143.2],[75.9,140.2],[75.6,137.2],[75.7,134.2],[76.6,131.3],[78.2,128.8],[80.5,126.7],[83.2,125.4]],[[147.2,112.9],[150.2,113.1],[153.1,114.2],[155.5,115.9],[157.5,118.3],[158.7,121],[159.5,123.9],[160.2,126.9],[160.9,129.8],[161.5,132.8],[162.2,135.8],[162.7,138.7],[163.3,141.7],[163.9,144.7],[164.4,147.7],[164.9,150.7],[165.4,153.7],[165.8,156.7],[165.8,159.7],[165,162.6],[163.6,165.3],[161.6,167.6],[159.2,169.4],[156.5,170.8],[153.6,171.5],[150.6,171.4],[147.7,170.5],[145.2,168.8],[143.4,166.3],[142.6,163.4],[142.1,160.4],[141.6,157.5],[141.1,154.5],[140.6,151.5],[140,148.5],[139.5,145.5],[138.9,142.6],[138.2,139.6],[137.6,136.6],[136.9,133.7],[136.2,130.7],[135.6,127.8],[135.5,124.8],[136.1,121.8],[137.3,119],[139.2,116.7],[141.5,114.7],[144.3,113.4]]],[[[79.9,130.4],[83.1,130.6],[86.1,131.4],[88.9,132.9],[91.3,134.9],[93.2,137.5],[94.4,140.3],[95.1,143.4],[95.7,146.5],[96.2,149.6],[96.8,152.7],[97.4,155.8],[98,158.9],[98.7,162],[99.4,165],[100.2,168.1],[101,171.2],[101.8,174.2],[102.6,177.2],[103,180.3],[102.3,183.4],[100.7,186],[98.2,188],[95.3,189.2],[92.2,189.6],[89,189.4],[86,188.6],[83.2,187.2],[80.6,185.3],[78.5,183],[77,180.2],[76.1,177.2],[75.3,174.2],[74.5,171.1],[73.7,168.1],[73,165],[72.3,161.9],[71.7,158.8],[71.1,155.8],[70.5,152.7],[69.9,149.6],[69.4,146.4],[69,143.3],[69.1,140.2],[70,137.2],[71.7,134.5],[74,132.4],[76.9,131]],[[168.9,136.3],[171.3,137],[173,138.8],[173.7,141.1],[173.4,143.6],[172.2,145.8],[170.4,147.5],[168.2,148.6],[165.9,149.4],[163.6,150.3],[161.2,151.2],[158.9,152],[156.6,152.8],[154.2,153.7],[151.8,154.4],[149.5,155.2],[147.1,155.9],[144.7,156.7],[142.3,157.3],[139.9,158],[137.6,158.7],[135.1,159.3],[132.7,159.9],[130.3,160.4],[127.8,160.5],[125.5,159.7],[123.8,158],[122.9,155.7],[123.1,153.2],[124.4,151.1],[126.3,149.6],[128.7,148.8],[131.1,148.2],[133.5,147.6],[135.9,147],[138.3,146.3],[140.7,145.7],[143.1,144.9],[145.5,144.2],[147.8,143.5],[150.2,142.7],[152.6,141.9],[154.9,141.2],[157.2,140.3],[159.6,139.5],[161.9,138.6],[164.2,137.7],[166.5,136.8]]],[[[103.4,78.2],[106.6,78.4],[109.6,79.3],[112.3,80.9],[114.4,83.3],[115.9,86.1],[116.5,89.2],[116.3,92.4],[115.6,95.5],[114.9,98.5],[114.1,101.6],[113.4,104.7],[112.6,107.8],[111.9,110.9],[111.2,114],[110.5,117.1],[109.8,120.2],[109.2,123.3],[108.5,126.4],[107.8,129.5],[106.8,132.5],[105,135.2],[102.7,137.2],[99.8,138.6],[96.7,139.2],[93.5,139],[90.5,137.9],[87.9,136.2],[85.7,133.9],[84.2,131.1],[83.5,128.1],[83.5,124.9],[84,121.7],[84.7,118.6],[85.4,115.5],[86.1,112.4],[86.8,109.3],[87.5,106.2],[88.2,103.2],[88.9,100],[89.7,97],[90.4,93.9],[91.2,90.8],[92,87.7],[93.1,84.8],[95,82.2],[97.4,80.2],[100.3,78.9]],[[162,91.6],[165.1,92],[167.9,93.3],[170.3,95.2],[172.2,97.7],[173.5,100.5],[174.1,103.6],[173.9,106.7],[173.4,109.8],[172.9,112.8],[172.3,115.9],[171.7,119],[171.1,122],[170.4,125.1],[169.7,128.1],[168.9,131.1],[168.1,134.1],[167.3,137.2],[166.5,140.2],[165.6,143.1],[164.3,146],[162.5,148.5],[160.2,150.5],[157.4,151.9],[154.3,152.6],[151.2,152.4],[148.3,151.4],[145.8,149.5],[144,147],[142.9,144.1],[142.7,141],[143.2,137.9],[144.1,134.9],[144.9,131.9],[145.8,128.9],[146.5,125.9],[147.3,122.9],[148,119.8],[148.7,116.8],[149.3,113.7],[149.9,110.7],[150.5,107.6],[151.1,104.5],[151.6,101.5],[152.4,98.5],[154,95.8],[156.2,93.6],[158.9,92.1]]],[[[83.4,65.8],[86.6,66.4],[89.6,67.9],[92,70.1],[93.7,73],[94.5,76.2],[94.3,79.5],[93.6,82.7],[92.8,85.9],[92,89.1],[91.3,92.4],[90.6,95.6],[89.9,98.8],[89.2,102.1],[88.6,105.3],[88,108.6],[87.5,111.9],[87,115.2],[86.5,118.4],[85.7,121.6],[84.1,124.5],[81.9,127],[79.1,128.8],[76,129.8],[72.7,129.9],[69.5,129.1],[66.6,127.5],[64.2,125.2],[62.5,122.4],[61.4,119.2],[61.1,116],[61.4,112.7],[61.9,109.4],[62.5,106.1],[63,102.9],[63.6,99.6],[64.2,96.4],[64.9,93.1],[65.6,89.9],[66.3,86.6],[67.1,83.4],[67.9,80.2],[68.7,77],[69.9,73.9],[71.7,71.1],[74.1,68.9],[76.9,67.2],[80.1,66.1]],[[119.5,99.2],[122,99.3],[124.4,99.8],[126.9,100.3],[129.4,100.9],[131.8,101.4],[134.3,101.9],[136.7,102.4],[139.2,103],[141.6,103.5],[144.1,104.1],[146.5,104.6],[149,105.2],[151.4,105.7],[153.9,106.3],[156.3,106.9],[158.8,107.5],[161.2,108],[163.5,109],[165.2,110.9],[165.9,113.2],[165.9,115.7],[164.9,118],[163.2,119.8],[160.8,120.5],[158.3,120.3],[155.9,119.7],[153.4,119.1],[151,118.5],[148.6,117.9],[146.1,117.4],[143.7,116.8],[141.2,116.3],[138.8,115.7],[136.3,115.2],[133.8,114.7],[131.4,114.2],[128.9,113.6],[126.5,113.1],[124,112.6],[121.6,112],[119.1,111.5],[116.8,110.5],[115.1,108.7],[114.2,106.4],[114.3,103.9],[115.3,101.6],[117.1,99.9]]],[[[168.7,85.7],[170.7,86],[172.6,86.8],[174.4,87.8],[175.9,89.2],[177.1,90.9],[178,92.7],[178.7,94.7],[179.2,96.6],[179.6,98.7],[180.1,100.7],[180.4,102.7],[180.8,104.7],[181.2,106.7],[181.5,108.7],[181.8,110.8],[181.9,112.8],[181.7,114.9],[181.2,116.9],[180.4,118.7],[179.3,120.5],[177.8,121.9],[176.1,123],[174.2,123.7],[172.2,124],[170.1,123.8],[168.2,123],[166.5,121.9],[165,120.5],[163.9,118.8],[163,116.9],[162.5,115],[162.2,112.9],[161.8,110.9],[161.5,108.9],[161.1,106.8],[160.8,104.8],[160.4,102.8],[160,100.8],[159.5,98.8],[159.2,96.8],[159.3,94.7],[159.7,92.7],[160.5,90.8],[161.6,89.1],[163,87.6],[164.7,86.5],[166.7,85.8]],[[206.6,78.2],[208.3,78.8],[209.8,79.9],[211,81.2],[212,82.7],[212.8,84.3],[213.5,86],[214.1,87.8],[214.5,89.5],[214.9,91.3],[215.3,93.1],[215.7,94.9],[216,96.7],[216.4,98.5],[216.6,100.3],[216.9,102.1],[217.1,103.9],[217.2,105.7],[217.3,107.5],[217.1,109.3],[216.8,111.1],[216.2,112.8],[215.3,114.4],[214,115.8],[212.3,116.3],[210.6,116],[209.1,114.9],[208,113.5],[207.1,111.9],[206.4,110.2],[206,108.4],[205.6,106.6],[205.3,104.8],[205.1,103],[204.8,101.2],[204.6,99.4],[204.2,97.6],[203.9,95.8],[203.5,94],[203.1,92.3],[202.7,90.5],[202.3,88.7],[202.1,86.9],[202.1,85.1],[202.3,83.3],[202.8,81.5],[203.5,79.9],[204.8,78.6]]],[[[107,116.2],[110.3,116.7],[113.3,118],[115.8,120],[117.9,122.5],[119.3,125.5],[120,128.6],[120.5,131.9],[121,135.1],[121.5,138.3],[122.1,141.5],[122.6,144.8],[123.1,148],[123.7,151.2],[124.2,154.4],[124.8,157.7],[125.4,160.9],[126,164.1],[126,167.3],[125.2,170.5],[123.5,173.3],[121.1,175.5],[118.3,177],[115.1,177.9],[111.8,178],[108.6,177.6],[105.6,176.4],[102.9,174.6],[100.7,172.1],[99.3,169.2],[98.6,166],[98,162.8],[97.5,159.6],[96.9,156.3],[96.4,153.1],[95.8,149.9],[95.3,146.7],[94.8,143.4],[94.3,140.2],[93.8,137],[93.3,133.8],[92.8,130.5],[93,127.3],[93.9,124.2],[95.5,121.3],[97.9,119.1],[100.7,117.4],[103.8,116.4]],[[189.2,122],[191.4,122.7],[192.8,124.5],[193.4,126.7],[193.3,129],[192.6,131.2],[191.2,133.1],[189.3,134.3],[187.1,135.2],[184.9,136],[182.8,136.8],[180.6,137.6],[178.4,138.4],[176.2,139.2],[174.1,139.9],[171.8,140.7],[169.6,141.4],[167.4,142.1],[165.2,142.8],[163,143.4],[160.8,144.1],[158.5,144.7],[156.3,145.2],[154,145.8],[151.7,146],[149.6,145.2],[148,143.5],[147.2,141.3],[147.3,139],[148.2,136.9],[149.7,135.1],[151.7,134.1],[154,133.4],[156.2,132.8],[158.4,132.2],[160.7,131.6],[162.9,130.9],[165.1,130.3],[167.3,129.6],[169.6,128.9],[171.8,128.2],[173.9,127.4],[176.2,126.7],[178.3,125.9],[180.5,125.1],[182.7,124.3],[184.8,123.4],[187,122.5]]]];
+var DEF=4;
+
+var ACTS=['act-bounce','act-shake','act-squish'];
+var stage=document.getElementById('stage'),actor=document.getElementById('actor'),
+    eyes=[document.getElementById('e0'),document.getElementById('e1')],
+    wraps=[document.getElementById('w0'),document.getElementById('w1')],
+    btn=document.getElementById('btn');
+var cur=POOL[DEF].map(function(r){return r.map(function(pt){return[pt[0],pt[1]]})}),
+    tgt=POOL[DEF],expr=DEF,morph=1,vel=0,last=performance.now(),blinkAt=0,
+    tx=0,ty=0,dx=0,dy=0,lastMove=0,raf=0,actTimer=0,blinkTimer=0;
+function clamp(v,a,b){return Math.max(a,Math.min(b,v))}
+function ringOf(m){return cur.map(function(r,e){return r.map(function(pt,i){
+  return[pt[0]+(tgt[e][i][0]-pt[0])*m,pt[1]+(tgt[e][i][1]-pt[1])*m]})})}
+function centroid(r){var x=0,y=0;for(var i=0;i<r.length;i++){x+=r[i][0]/r.length;y+=r[i][1]/r.length}return[x,y]}
+function toPath(r){var s='M';for(var i=0;i<r.length;i++)s+=(i?'L':'')+r[i][0]+' '+r[i][1];return s+'Z'}
+function blinkScale(now){if(!blinkAt)return 1;var t=(now-blinkAt)/320;
+  if(t>=1){blinkAt=0;return 1}return Math.max(t<.42?1-t/.42:(t-.42)/.58,.04)}
+window.addEventListener('mousemove',function(ev){
+  var b=stage.getBoundingClientRect(),cx=b.left+b.width/2,cy=b.top+b.height/2;
+  tx=clamp((ev.clientX-cx)/(b.width/2),-1,1)*16;
+  ty=clamp((ev.clientY-cy)/(b.height/2),-1,1)*11;
+  lastMove=performance.now();
+});
+stage.addEventListener('click',function(){
+  var next;do{next=Math.floor(Math.random()*POOL.length)}while(next===expr&&POOL.length>1);
+  cur=ringOf(clamp(morph,0,1));tgt=POOL[next];expr=next;morph=0;vel=0;
+  clearTimeout(actTimer);ACTS.forEach(function(c){actor.classList.remove(c)});
+  void actor.getBoundingClientRect();
+  var cls=ACTS[Math.floor(Math.random()*ACTS.length)];
+  actor.classList.add(cls);
+  actTimer=setTimeout(function(){actor.classList.remove(cls)},950);
+});
+function blink(){blinkAt=performance.now()}
+btn.addEventListener('mouseenter',blink);
+function scheduleBlink(){blinkTimer=setTimeout(function(){if(!document.hidden)blink();scheduleBlink()},3000+Math.random()*3000)}
+scheduleBlink();
+document.addEventListener('visibilitychange',function(){
+  if(document.hidden){cancelAnimationFrame(raf);raf=0;clearTimeout(blinkTimer)}
+  else{last=performance.now();raf=requestAnimationFrame(frame);scheduleBlink()}
+});
+function frame(now){
+  var dt=Math.min((now-last)/1000,.1);last=now;
+  vel+=(-14*vel-49*(morph-1))*dt;morph+=vel*dt;
+  if(!isFinite(morph)){morph=1;vel=0}
+  var idleFor=now-lastMove;
+  var gx=tx,gy=ty;
+  if(idleFor>2500){var t=now/1000;gx=Math.sin(t*0.6)*8;gy=Math.cos(t*0.4)*3.6}
+  dx+=(gx-dx)*.12;dy+=(gy-dy)*.12;
+  var shown=ringOf(clamp(morph,0,1)),bs=blinkScale(now);
+  for(var i=0;i<shown.length;i++){
+    var c=centroid(shown[i]);
+    eyes[i].setAttribute('d',toPath(shown[i]));
+    eyes[i].setAttribute('transform','translate(0 '+c[1]+') scale(1 '+bs+') translate(0 '+-c[1]+')');
+    wraps[i].setAttribute('transform','translate('+dx.toFixed(2)+' '+dy.toFixed(2)+')');
+  }
+  raf=requestAnimationFrame(frame);
+}
+raf=requestAnimationFrame(frame);
+})();
+</script>
+</body>
+</html>

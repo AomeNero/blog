@@ -1,0 +1,136 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>403 · AomeNero's Blog</title>
+<script>
+(function(){var t=null;try{t=localStorage.getItem('theme')}catch(e){}
+if(t!=='dark'&&t!=='light')t=window.matchMedia&&matchMedia('(prefers-color-scheme: dark)').matches?'dark':'light';
+document.documentElement.setAttribute('data-theme',t)})();
+</script>
+<style>
+:root{--bg:#fff;--fg:#282828;--muted:#8a8a8a;--accent:#4786d6;--num:rgba(71,134,214,.32);--btn-bg:#fff}
+html[data-theme=dark]{--bg:#161616;--fg:#eee;--muted:#7a7a7a;--accent:#b5ceff;--num:rgba(181,206,255,.28);--btn-bg:#161616}
+*{box-sizing:border-box;margin:0;padding:0}
+html,body{height:100%}
+body{background:var(--bg);color:var(--fg);display:flex;flex-direction:column;align-items:center;justify-content:center;
+gap:18px;padding:24px;text-align:center;font-family:-apple-system,BlinkMacSystemFont,"Segoe UI","PingFang SC","Hiragino Sans GB","Microsoft YaHei",sans-serif;
+transition:background .8s,color .8s;overflow:hidden}
+a{color:inherit;text-decoration:none}
+.site{position:fixed;top:18px;left:50%;transform:translateX(-50%);font-size:13px;letter-spacing:1px;color:var(--muted)}
+.stage{position:relative;width:min(64vw,340px);height:min(64vw,340px);display:grid;place-items:center;cursor:pointer;user-select:none;-webkit-tap-highlight-color:transparent}
+.code{position:absolute;font-size:min(34vw,180px);font-weight:800;line-height:1;letter-spacing:.14em;margin-right:-.14em; /* 抵消 letter-spacing 尾随空隙,保证字形真正居中 */
+color:transparent;-webkit-text-stroke:3px var(--num);pointer-events:none;font-variant-numeric:tabular-nums}
+svg{position:relative;width:62%;height:62%;overflow:visible}
+.idle,.breath{transform-box:fill-box;transform-origin:center}
+.breath{animation:breathe 3.4s ease-in-out infinite alternate}
+.idle-shake{animation:摇头 2.8s ease-in-out infinite}
+.idle-sway{animation:sway 4.2s ease-in-out infinite}
+.body{fill:#2f86ed}.eye{fill:#fffdf7}
+.act{transform-box:fill-box;transform-origin:center}
+.act-bounce{animation:act-bounce .75s cubic-bezier(.3,.8,.4,1)}
+.act-shake{animation:act-shake .65s ease}
+.act-squish{animation:act-squish .8s ease}
+h1{font-size:26px;font-weight:700;letter-spacing:2px}
+.desc{color:var(--muted);font-size:15px;line-height:1.7;max-width:34em}
+.btn{display:inline-block;margin-top:6px;padding:9px 26px;border:1.5px solid var(--accent);border-radius:999em;
+color:var(--accent);background:var(--btn-bg);font-size:15px;cursor:pointer;transition:background .25s,color .25s}
+.btn:hover{background:var(--accent);color:var(--bg)}
+.foot{position:fixed;bottom:14px;left:0;right:0;font-size:12px;color:var(--muted)}
+@keyframes breathe{from{transform:scale(1)}to{transform:scale(1.02)}}
+@keyframes 摇头{0%,100%{transform:rotate(0)}20%{transform:rotate(-9deg)}40%{transform:rotate(9deg)}60%{transform:rotate(-7deg)}80%{transform:rotate(6deg)}}
+@keyframes sway{0%,100%{transform:rotate(0) translateY(0)}30%{transform:rotate(5deg) translateY(4px)}60%{transform:rotate(-5deg) translateY(2px)}}
+@keyframes act-bounce{0%,100%{transform:translateY(0) scale(1)}38%{transform:translateY(-30px) scale(.95,1.05)}60%{transform:translateY(3px) scale(1.08,.9)}}
+@keyframes act-shake{0%,100%{transform:rotate(0)}20%{transform:rotate(-13deg)}40%{transform:rotate(13deg)}60%{transform:rotate(-10deg)}80%{transform:rotate(8deg)}}
+@keyframes act-squish{0%,100%{transform:scale(1)}30%{transform:scale(1.15,.72) translateY(20px)}60%{transform:scale(.86,1.18) translateY(-14px)}}
+@media (prefers-reduced-motion:reduce){.breath,.idle-shake,.idle-sway,.act-bounce,.act-shake,.act-squish{animation:none}}
+</style>
+</head>
+<body>
+<a class="site" href="/">AomeNero&rsquo;s Blog</a>
+<div class="stage" id="stage" title="点我一下试试">
+  <div class="code">403</div>
+  <svg viewBox="-28 -28 285 285" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="GrokBot 小机器人">
+    <defs><clipPath id="lc"><path d="M228.541 114.228C228.541 130.133 225.184 145.994 218.738 160.534C212.674 174.217 203.904 186.669 193.065 196.988C155.933 232.34 99.497 238.596 55.5255 212.24C45.097 205.99 35.6851 198.072 27.7451 188.866C19.1926 178.953 12.3686 167.569 7.65781 155.351C2.60712 142.264 0 128.257 0 114.228C0 98.3219 3.35751 82.4611 9.80315 67.9215C15.8672 54.2382 24.6377 41.7862 35.4767 31.4668C72.6081 -3.88483 129.044 -10.1413 173.016 16.2153C183.444 22.4653 192.856 30.3829 200.796 39.5896C209.349 49.5018 216.173 60.8859 220.883 73.1037C225.934 86.1906 228.541 100.198 228.541 114.228Z"/></clipPath></defs>
+    <g class="idle idle-shake">
+      <g class="breath">
+        <g class="act" id="actor" clip-path="url(#lc)">
+          <path class="body" d="M228.541 114.228C228.541 130.133 225.184 145.994 218.738 160.534C212.674 174.217 203.904 186.669 193.065 196.988C155.933 232.34 99.497 238.596 55.5255 212.24C45.097 205.99 35.6851 198.072 27.7451 188.866C19.1926 178.953 12.3686 167.569 7.65781 155.351C2.60712 142.264 0 128.257 0 114.228C0 98.3219 3.35751 82.4611 9.80315 67.9215C15.8672 54.2382 24.6377 41.7862 35.4767 31.4668C72.6081 -3.88483 129.044 -10.1413 173.016 16.2153C183.444 22.4653 192.856 30.3829 200.796 39.5896C209.349 49.5018 216.173 60.8859 220.883 73.1037C225.934 86.1906 228.541 100.198 228.541 114.228Z"/>
+          <g id="w0"><path class="eye" id="e0"/></g>
+          <g id="w1"><path class="eye" id="e1"/></g>
+        </g>
+      </g>
+    </g>
+  </svg>
+</div>
+<h1>请停在这里。<br>有些远方，需要另一种身份抵达。</h1>
+<p class="desc">你暂时没有访问这里的权限。</p>
+<a class="btn" id="btn" href="/">返回首页</a>
+<p class="foot">&copy; AomeNero &middot; 403 Forbidden</p>
+<script>
+(function(){
+"use strict";
+var POOL=[[[[90.4,99.2],[93.1,99.3],[95.7,99.8],[98.4,100.3],[101,100.8],[103.6,101.3],[106.3,101.8],[108.9,102.4],[111.5,102.9],[114.2,103.4],[116.8,103.9],[119.4,104.5],[122.1,105],[124.7,105.5],[127.3,106.1],[129.9,106.6],[132.6,107.1],[135.2,107.7],[137.7,108.7],[139.5,110.7],[140.4,113.1],[140.4,115.8],[139.3,118.3],[137.5,120.2],[135,121.1],[132.3,121.1],[129.7,120.6],[127.1,120],[124.5,119.5],[121.8,118.9],[119.2,118.4],[116.6,117.9],[113.9,117.3],[111.3,116.8],[108.7,116.3],[106,115.8],[103.4,115.3],[100.8,114.8],[98.1,114.3],[95.5,113.8],[92.9,113.2],[90.2,112.7],[87.8,111.7],[85.9,109.7],[85,107.2],[85.1,104.6],[86.1,102.1],[88,100.2]],[[156.6,112.6],[158.9,112.7],[161.2,113.2],[163.4,113.6],[165.7,114.1],[168,114.6],[170.3,115.1],[172.5,115.6],[174.8,116.1],[177.1,116.6],[179.3,117.1],[181.6,117.6],[183.9,118.2],[186.1,118.7],[188.4,119.2],[190.7,119.7],[192.9,120.2],[195.1,121],[196.7,122.6],[197.4,124.8],[197.5,127.1],[197.1,129.4],[196.1,131.5],[194.5,133.2],[192.3,134],[190,133.7],[187.8,133.1],[185.5,132.6],[183.3,132.1],[181,131.5],[178.7,131],[176.4,130.5],[174.2,130],[171.9,129.5],[169.6,129.1],[167.4,128.6],[165.1,128.1],[162.8,127.6],[160.6,127.1],[158.3,126.6],[156,126],[153.9,125.1],[152.3,123.5],[151.3,121.4],[151.1,119.1],[151.5,116.8],[152.7,114.8],[154.4,113.3]]],[[[86,131.3],[88.4,131.7],[90.5,132.9],[92.1,134.7],[93,137],[93.2,139.4],[92.4,141.7],[90.8,143.5],[88.6,144.5],[86.2,145],[83.8,145.3],[81.4,145.7],[79,146.1],[76.5,146.4],[74.1,146.8],[71.7,147.2],[69.3,147.5],[66.9,147.8],[64.5,148.2],[62,148.5],[59.6,148.8],[57.2,149],[54.8,149.3],[52.3,149.5],[49.9,149.7],[47.5,149.3],[45.5,147.9],[44,146],[43.1,143.7],[42.9,141.3],[43.4,139],[45,137.2],[47.3,136.4],[49.8,136.2],[52.2,136],[54.6,135.7],[57,135.4],[59.5,135.2],[61.9,134.8],[64.3,134.5],[66.7,134.2],[69.1,133.9],[71.6,133.5],[74,133.2],[76.4,132.8],[78.8,132.4],[81.2,132.1],[83.6,131.7]],[[153.4,116.8],[155.9,117.7],[157.8,119.6],[158.7,122],[158.7,124.7],[157.8,127.2],[156.1,129.2],[153.7,130.3],[151.1,131],[148.6,131.7],[146,132.3],[143.4,133],[140.8,133.6],[138.2,134.3],[135.7,134.9],[133.1,135.5],[130.5,136.2],[127.9,136.8],[125.3,137.4],[122.7,137.9],[120.1,138.5],[117.5,139.1],[114.9,139.6],[112.3,140.1],[109.6,140.1],[107.2,139.1],[105.3,137.3],[104.2,134.9],[104.1,132.2],[105,129.8],[106.9,127.9],[109.3,126.9],[112,126.3],[114.6,125.8],[117.2,125.2],[119.8,124.7],[122.4,124.1],[125,123.5],[127.6,122.9],[130.2,122.3],[132.7,121.7],[135.3,121],[137.9,120.4],[140.5,119.8],[143.1,119.1],[145.7,118.4],[148.2,117.8],[150.8,117]]],[[[72.3,79.3],[74.9,79.6],[77.5,79.9],[80.1,80.2],[82.7,80.6],[85.3,80.9],[87.9,81.3],[90.5,81.6],[93,82],[95.6,82.4],[98.2,82.8],[100.8,83.2],[103.4,83.6],[105.9,84.1],[108.5,84.5],[111.1,84.9],[113.7,85.4],[116,86.6],[117.8,88.5],[118.7,90.9],[118.6,93.5],[117.5,95.8],[115.6,97.6],[113.2,98.6],[110.6,98.6],[108,98.1],[105.4,97.6],[102.8,97.2],[100.3,96.8],[97.7,96.3],[95.1,95.9],[92.5,95.5],[90,95.1],[87.4,94.8],[84.8,94.4],[82.2,94.1],[79.6,93.7],[77,93.4],[74.4,93.1],[71.8,92.8],[69.2,92.5],[66.8,91.7],[65,89.8],[64.2,87.3],[64.5,84.8],[65.6,82.4],[67.4,80.5],[69.7,79.5]],[[136.8,90.2],[139.3,90.7],[141.8,91.3],[144.3,91.9],[146.8,92.5],[149.2,93.1],[151.7,93.8],[154.2,94.4],[156.6,95],[159.1,95.7],[161.5,96.4],[164,97.1],[166.4,97.8],[168.9,98.5],[171.3,99.2],[173.8,99.9],[176.2,100.7],[178.5,101.7],[180.2,103.6],[181.1,106],[181.3,108.5],[180.7,111],[179.2,113],[177,114.2],[174.5,114.1],[172,113.4],[169.6,112.7],[167.1,111.9],[164.7,111.2],[162.2,110.5],[159.8,109.8],[157.3,109.2],[154.9,108.5],[152.4,107.9],[149.9,107.3],[147.5,106.6],[145,106],[142.5,105.4],[140.1,104.8],[137.6,104.2],[135.1,103.6],[132.8,102.6],[131,100.9],[129.9,98.5],[129.8,96],[130.5,93.6],[132.1,91.6],[134.3,90.5]]]];
+var DEF=1;
+
+var ACTS=['act-bounce','act-shake','act-squish'];
+var stage=document.getElementById('stage'),actor=document.getElementById('actor'),
+    eyes=[document.getElementById('e0'),document.getElementById('e1')],
+    wraps=[document.getElementById('w0'),document.getElementById('w1')],
+    btn=document.getElementById('btn');
+var cur=POOL[DEF].map(function(r){return r.map(function(pt){return[pt[0],pt[1]]})}),
+    tgt=POOL[DEF],expr=DEF,morph=1,vel=0,last=performance.now(),blinkAt=0,
+    tx=0,ty=0,dx=0,dy=0,lastMove=0,raf=0,actTimer=0,blinkTimer=0;
+function clamp(v,a,b){return Math.max(a,Math.min(b,v))}
+function ringOf(m){return cur.map(function(r,e){return r.map(function(pt,i){
+  return[pt[0]+(tgt[e][i][0]-pt[0])*m,pt[1]+(tgt[e][i][1]-pt[1])*m]})})}
+function centroid(r){var x=0,y=0;for(var i=0;i<r.length;i++){x+=r[i][0]/r.length;y+=r[i][1]/r.length}return[x,y]}
+function toPath(r){var s='M';for(var i=0;i<r.length;i++)s+=(i?'L':'')+r[i][0]+' '+r[i][1];return s+'Z'}
+function blinkScale(now){if(!blinkAt)return 1;var t=(now-blinkAt)/320;
+  if(t>=1){blinkAt=0;return 1}return Math.max(t<.42?1-t/.42:(t-.42)/.58,.04)}
+window.addEventListener('mousemove',function(ev){
+  var b=stage.getBoundingClientRect(),cx=b.left+b.width/2,cy=b.top+b.height/2;
+  tx=clamp((ev.clientX-cx)/(b.width/2),-1,1)*16;
+  ty=clamp((ev.clientY-cy)/(b.height/2),-1,1)*11;
+  lastMove=performance.now();
+});
+stage.addEventListener('click',function(){
+  var next;do{next=Math.floor(Math.random()*POOL.length)}while(next===expr&&POOL.length>1);
+  cur=ringOf(clamp(morph,0,1));tgt=POOL[next];expr=next;morph=0;vel=0;
+  clearTimeout(actTimer);ACTS.forEach(function(c){actor.classList.remove(c)});
+  void actor.getBoundingClientRect();
+  var cls=ACTS[Math.floor(Math.random()*ACTS.length)];
+  actor.classList.add(cls);
+  actTimer=setTimeout(function(){actor.classList.remove(cls)},950);
+});
+function blink(){blinkAt=performance.now()}
+btn.addEventListener('mouseenter',blink);
+function scheduleBlink(){blinkTimer=setTimeout(function(){if(!document.hidden)blink();scheduleBlink()},3000+Math.random()*3000)}
+scheduleBlink();
+document.addEventListener('visibilitychange',function(){
+  if(document.hidden){cancelAnimationFrame(raf);raf=0;clearTimeout(blinkTimer)}
+  else{last=performance.now();raf=requestAnimationFrame(frame);scheduleBlink()}
+});
+function frame(now){
+  var dt=Math.min((now-last)/1000,.1);last=now;
+  vel+=(-14*vel-49*(morph-1))*dt;morph+=vel*dt;
+  if(!isFinite(morph)){morph=1;vel=0}
+  var idleFor=now-lastMove;
+  var gx=tx,gy=ty;
+  if(idleFor>2500){var t=now/1000;gx=Math.sin(t*0.8)*7;gy=Math.cos(t*0.5)*3.1}
+  dx+=(gx-dx)*.12;dy+=(gy-dy)*.12;
+  var shown=ringOf(clamp(morph,0,1)),bs=blinkScale(now);
+  for(var i=0;i<shown.length;i++){
+    var c=centroid(shown[i]);
+    eyes[i].setAttribute('d',toPath(shown[i]));
+    eyes[i].setAttribute('transform','translate(0 '+c[1]+') scale(1 '+bs+') translate(0 '+-c[1]+')');
+    wraps[i].setAttribute('transform','translate('+dx.toFixed(2)+' '+dy.toFixed(2)+')');
+  }
+  raf=requestAnimationFrame(frame);
+}
+raf=requestAnimationFrame(frame);
+})();
+</script>
+</body>
+</html>
