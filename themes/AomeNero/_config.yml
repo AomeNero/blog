@@ -1,12 +1,14 @@
 # 配置说明见主题文档
+# 个人信息请在站点根目录的 _config.AomeNero.yml 中覆盖（Hexo 5+ 官方机制），此处保持可分发的干净默认值
 # 博客配置
-keywords: Blog,博客,Hexo,AomeNero
-author: AomeNero
-description: AomeNero's Blog
+build_on_generate: false # 设 true 时 hexo generate/server 自动编译主题前端(需先在主题目录安装依赖);发布包用户保持 false 即可
+keywords: Blog,博客,Hexo
+author: # 作者名，用于版权声明等；留空则不显示
+description: # 侧栏站点描述；留空则不显示
 defaultTheme: default # 可选 light、dark 或 default
 
 # 图标
-# 如果尺寸不对,请编辑 /source/css/style.styl
+# 如果尺寸不对,请直接替换 source/images/favicon.webp(主题不再使用 Stylus)
 favicon: /images/favicon.webp
 avatar: /images/logo.webp
 logo_dir: /images/logo@2x.webp
@@ -68,23 +70,23 @@ copyright:
 # 站点页脚
 footbar:
   # 版权声明,也可用作页脚备注
-  copyright: 采用 CC BY-NC-SA 4.0 许可，转载请注明出处.
-  # 对于中国用户，如果你有网站备案：
-  beian: 鄂ICP备2026041732号
-  gongan:
+  copyright: # 如「采用 CC BY-NC-SA 4.0 许可，转载请注明出处.」
+  # 对于中国用户，如果你有网站备案（备案号绑定域名,切勿使用他人的备案号）：
+  beian: # 如 鄂ICP备12345678号
+  gongan: # 公安备案号,需同时保留主题 images/gongan.png
 
 # 社交链接
 # 键是 font-awesome 6 的图标名,值是对应链接
 # mail 除外。
 social:
-  github: https://github.com/AomeNero/blog
-  mail: yotianya@foxmail.com
+  github: # https://github.com/你的用户名
+  mail: # your@mail.com
   zhihu:
-  qq: 56932422
-  twitter: https://x.com/NeroAck
+  qq:
+  twitter:
   instagram:
   rss:
-  facebook: 
+  facebook:
   weibo:
 
 # 导航菜单
@@ -116,7 +118,7 @@ disqus:
 gentie:
 # Valine 评论 https://valine.js.org
 valine:
-  enable: true # 如需使用 Valine,请设为 true
+  enable: false # 如需使用 Valine,请设为 true 并填入 appid/appkey(空凭据会渲染出不可用的评论框)
   appid: # 你的 leancloud appid
   appkey: # 你的 leancloud appkey
   notify: false # true/false:邮件通知 !!!测试,谨慎使用。 https://github.com/xCss/Valine/wiki/Valine-%E8%AF%84%E8%AE%BA%E7%B3%BB%E7%BB%9F%E4%B8%AD%E7%9A%84%E9%82%AE%E4%BB%B6%E6%8F%90%E9%86%92%E8%AE%BE%E7%BD%AE

@@ -1,12 +1,13 @@
 # 配置说明见主题文档
 # 博客配置
+build_on_generate: false # 设 true 时 hexo generate/server 自动编译主题前端(需先在主题目录安装依赖);发布包用户保持 false 即可
 keywords: Blog,博客,Hexo,AomeNero
 author: AomeNero
 description: AomeNero's Blog
 defaultTheme: default # 可选 light、dark 或 default
 
 # 图标
-# 如果尺寸不对,请编辑 /source/css/style.styl
+# 如果尺寸不对,请直接替换 source/images/favicon.webp(主题不再使用 Stylus)
 favicon: /images/favicon.webp
 avatar: /images/logo.webp
 logo_dir: /images/logo@2x.webp
