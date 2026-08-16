@@ -102,6 +102,14 @@ hexo server          # → http://localhost:4000
 pnpm --dir themes/AomeNero --ignore-workspace build
 ```
 
+## 错误页
+
+`source/403.html`、`404.html`、`502.html` 是三个自包含错误页(单文件内联 CSS/SVG/JS,基于侧栏同款表情角色,视线跟随鼠标/自动游走/点击换表情,明暗跟随博客主题):
+
+- 本地预览:`hexo s` 后直接访问 `http://localhost:4000/404.html`(Hexo 本身不产生这些状态码,要看真实触发效果直接开文件即可)
+- 线上生效:需 Nginx `error_page` 配置,见 [部署教程.md](./部署教程.md)
+- 站点 `_config.yml` 的 `skip_render` 已排除这三个文件,保证原样输出不套主题布局
+
 ## 部署
 
 详见 [部署教程.md](./部署教程.md):阿里云 ECS + Nginx 静态托管 + 域名解析 + HTTPS。
