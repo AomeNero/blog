@@ -4,7 +4,7 @@ const util = require('hexo-util');
  * Insight 搜索 content.json 生成器。
  */
 /** @param {import("hexo")} hexo */
-module.exports = function (hexo) {
+module.exports = (hexo) => {
   hexo.extend.generator.register('insight', function (locals) {
     const url_for = hexo.extend.helper.get('url_for').bind(this);
     function minify(str) {
@@ -13,12 +13,8 @@ module.exports = function (hexo) {
         .trim()
         .replace(/\n/g, ' ')
         .replace(/\s+/g, ' ')
-        .replace(/&#x([\da-fA-F]+);/g, function (match, hex) {
-          return String.fromCharCode(parseInt(hex, 16));
-        })
-        .replace(/&#([\d]+);/g, function (match, dec) {
-          return String.fromCharCode(dec);
-        });
+        .replace(/&#x([\da-fA-F]+);/g, (match, hex) => String.fromCharCode(Number.parseInt(hex, 16)))
+        .replace(/&#([\d]+);/g, (match, dec) => String.fromCharCode(dec));
     }
     function postMapper(post) {
       return {

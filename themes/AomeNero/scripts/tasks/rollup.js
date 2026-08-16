@@ -1,9 +1,9 @@
-const cp = require('child_process');
-const fs = require('fs');
-const path = require('path');
+const cp = require('node:child_process');
+const fs = require('node:fs');
+const path = require('node:path');
 
 /** @param {import("hexo")} hexo */
-module.exports = function (hexo) {
+module.exports = (hexo) => {
   let watcherStarted = false;
   // 主题配置在 hexo.load() 之后才就绪,须挂 before_generate filter(hexo g / hexo s 生成前必经)
   hexo.extend.filter.register('before_generate', () => {
