@@ -1,7 +1,7 @@
-require('../includes/tasks/welcome')(hexo);
-require('../includes/tasks/rollup')(hexo);
-require('../includes/generators/insight')(hexo);
-require('../includes/generators/site_json')(hexo);
-require('../includes/generators/tags')(hexo);
-require('../includes/helpers/site')(hexo);
-require('../includes/helpers/tag')(hexo);
+require('./tasks/welcome')(hexo);
+require('./tasks/rollup')(hexo);
+require('./generators/insight')(hexo);
+require('./generators/site_json')(hexo);
+require('./generators/tags')(hexo);
+require('./helpers/site')(hexo);
+require('./helpers/tag')(hexo);
