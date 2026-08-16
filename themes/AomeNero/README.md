@@ -4,6 +4,12 @@ A type-safe, lightweight, modern Hexo theme.
 
 AomeNero 的个人博客主题。前端 JS 打包后仅约 40KB，加载极快。
 
+![preview](demo.png)
+
+**在线演示**：<https://www.aomenero.com>
+
+**环境要求**：Hexo ≥ 6（在 6/7/8 上验证）· Node ≥ 18 · 任意包管理器（npm / yarn / pnpm 均可）
+
 ## 特性
 
 - 现代化前端打包（Rollup + TypeScript + TSX）
@@ -22,18 +28,27 @@ AomeNero 的个人博客主题。前端 JS 打包后仅约 40KB，加载极快�
 
 ## 安装
 
-将主题放入 Hexo 博客的 `themes/AomeNero` 目录并安装依赖：
+**方式一：Release 包（推荐，无需 Node 工具链）**
+
+1. 从 GitHub Releases 下载最新的 `hexo-theme-AomeNero-<版本>.zip`（已含构建产物）
+2. 解压到博客的 `themes/` 目录，得到 `themes/hexo-theme-AomeNero/`（可自行改名）
+3. 跳到下面的「启用」
+
+**方式二：源码构建**
 
 ```bash
-cd themes/AomeNero
-pnpm i
+git clone https://github.com/AomeNero/blog themes/AomeNero
+cd themes/AomeNero && npm i && npm run build   # 构建产物 js_complied 不入库,必须执行
 ```
 
-在 Hexo 博客根目录安装 pug 渲染器：
+**启用（两方式通用）**
 
-```bash
-pnpm add hexo-renderer-pug
-```
+1. 博客根目录安装 pug 渲染器：`npm i hexo-renderer-pug`（Hexo 约定渲染器装在站点侧）
+2. 博客根目录 `_config.yml` 设置 `theme: AomeNero`
+3. （可选）个人信息写在博客根目录 `_config.AomeNero.yml`，同名键覆盖主题默认值——主题自带的 `_config.yml` 保持干净默认，方便升级
+4. `hexo s` 打开 `http://localhost:4000` 验证
+
+> 主题默认配置不含任何个人信息（备案号/社交账号等均为空）。若 `hexo g` 时想自动编译主题前端，把主题配置里 `build_on_generate` 设为 `true`（需先在主题目录装好依赖）。
 
 ## 配置
 
@@ -63,17 +78,24 @@ pnpm format     # 格式化代码
 
 ## 目录结构
 
-- `includes` / `scripts`：主题内置的 Hexo 脚本
+- `scripts`：主题内置的 Hexo 脚本（`generators` 生成器 / `helpers` 辅助 / `tasks` 任务，由 `index.js` 桥接加载）
 - `languages`：I18n 文件
 - `layout`：模板，在 `hexo g` 时渲染成 HTML
 - `source`：HTML 资产（含编译产物 `js_complied/`）
 - `src`：前端 TypeScript 源码，由 rollup 打包为 `js_complied/bundle.js`
+- `tools`：维护者脚本（`release.cjs` 发版打包）
+
+## 发版（维护者）
+
+```bash
+npm run release   # 构建并打包 → dist/hexo-theme-AomeNero-<版本>.zip
+```
+
+把生成的 zip 上传到 GitHub Release 即可——**用户下载解压到 `themes/` 就能用，无需 Node 工具链**（zip 已含构建产物）。git 仓库保持纯源码（`js_complied`、`dist` 均不入库）。
+
+发版前：更新 `CHANGELOG.md`、递增 `package.json` 版本号、提交后打 tag（`git tag v2.1.0 && git push --tags`），Release 标题与 tag 对应。
 
 ---
 
 Author: **AomeNero** &lt;yotianya@foxmail.com&gt;  
 License: MIT
-
-## 致谢
-
-- 侧栏动态头像基于 [LaoA-GrokBot](https://github.com/zhulin025/LaoA-GrokBot) 的表情数据制作（MIT License）
