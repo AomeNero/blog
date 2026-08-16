@@ -24,6 +24,7 @@ AomeNero 的个人博客主题。前端 JS 打包后仅约 40KB，加载极快�
 - 文章版权声明、字数统计、社交账号、备案号、百度统计
 - 侧栏动态头像（LaoA GrokBot 表情）
 - 文章 banner（front-matter `banner:` 字段）
+- banner 圆角可配置（`banner_radius`，默认 `10px`）
 - 字体配置化（`_config.yml` 的 `font` 块，渲染时注入 CSS 变量）
 
 ## 安装
@@ -75,6 +76,9 @@ pnpm format     # 格式化代码
 字体配置：`_config.yml` 的 `font` 块在渲染时由 `head.pug` 注入为
 `:root` CSS 变量（`--font-*`），SCSS 侧以 `var(--font-*, 内置默认值)` 消费；
 `enable: false` 时全部回落内置 Open Sans 方案。
+
+banner 圆角：`banner_radius` 同样注入为 `--banner-radius`，
+SCSS 以 `var(--banner-radius, 10px)` 消费；设为 `0` 恢复直角。
 
 ## 目录结构
 

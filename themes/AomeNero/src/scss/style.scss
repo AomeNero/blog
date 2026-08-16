@@ -31,6 +31,8 @@
     max-width: 100%;
     height: auto;
     margin-bottom: 20px;
+    // 圆角由 _config.yml 的 banner_radius 注入(0 恢复直角)
+    border-radius: var(--banner-radius, 10px);
   }
 
   .post-title {

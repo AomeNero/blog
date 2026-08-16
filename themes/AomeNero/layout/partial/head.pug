@@ -53,6 +53,10 @@ if theme.font && theme.font.enable
   if vars.length
     style!= ':root{' + vars.join(';') + ';}'
 
+//- banner 圆角配置注入为 CSS 变量，SCSS 中以 var(--banner-radius, 10px) 消费
+if theme.banner_radius
+  style!= ':root{--banner-radius: ' + theme.banner_radius + ';}'
+
 script(src=url_for("js_complied/bundle.js") + "?v=" + theme.asset_version)
 if theme.Baidutongji
   script(src=url_for("js/baidu-tongji.js"))

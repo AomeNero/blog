@@ -12,7 +12,7 @@ defaultTheme: default # 可选 light、dark 或 default
 favicon: /images/favicon.webp
 avatar: /images/logo.webp
 logo_dir: /images/logo@2x.webp
-asset_version: 12 # 修改 bundle.js/css 后递增,用于强制浏览器刷新缓存
+asset_version: 13 # 修改 bundle.js/css 后递增,用于强制浏览器刷新缓存
 
 # 字体配置（enable: false 时使用主题内置 Open Sans 方案）
 font:
@@ -107,8 +107,9 @@ rightbtn:
 # 其他设置
 useSummary: false # 开启后将使用自动生成的摘要,而非你配置的 <!-- more --> 来预览文章
 
-useTagCloud: false # 使用标签云代替标签列表
+useTagCloud: true # 使用标签云代替标签列表
 tocMaxDepth: 6 # 设为 0 则不生成目录(toc),最大为 6
+banner_radius: 10px # 文章 banner 圆角;设为 0 恢复直角,支持任意 CSS 长度
 
 # 评论
 always_enable_comments: false # 始终启用评论
