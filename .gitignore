@@ -6,3 +6,5 @@ node_modules/
 public/
 .deploy*/
 _multiconfig.yml
+_config.yml
+themes\AomeNero_config.yml

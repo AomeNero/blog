@@ -11,6 +11,9 @@ importers:
       hexo:
         specifier: ^8.0.0
         version: 8.1.2(chokidar@3.6.0)
+      hexo-deployer-ftpsync:
+        specifier: ^0.2.0
+        version: 0.2.0
       hexo-generator-archive:
         specifier: ^2.0.0
         version: 2.0.0
@@ -134,6 +137,10 @@ packages:
   basic-auth@2.0.1:
     resolution: {integrity: sha512-NF+epuEdnUYVlGuhaxbbq+dvJttwLnGY+YixlXlME5KpQ5W3CnXA5cVTneY3SPbPDRkcjMbifrwmFYcClgOZeg==}
     engines: {node: '>= 0.8'}
+
+  basic-ftp@5.3.1:
+    resolution: {integrity: sha512-bopVNp6ugyA150DDuZfPFdt1KZ5a94ZDiwX4hMgZDzF+GttD80lEy8kj98kbyhLXnPvhtIo93mdnLIjpCAeeOw==}
+    engines: {node: '>=10.0.0'}
 
   binary-extensions@2.3.0:
     resolution: {integrity: sha512-Ceh+7ox5qe7LJuLHoY0feh3pHuUDHAcRUeyL2VYghZwfpkNIy/+8Ocg0a3UuSoYzavmylwuLWQOf3hl0jjMMIw==}
@@ -437,6 +444,10 @@ packages:
     resolution: {integrity: sha512-druJeBgLpG9ncDS5AhBHdAXk0G4CFj8Qes09pApyZ6bR+nJW1JYiDMuilhudaKDdq+1l49jWXVTidkcb7p0Jbw==}
     engines: {node: '>=14'}
     hasBin: true
+
+  hexo-deployer-ftpsync@0.2.0:
+    resolution: {integrity: sha512-YdFEbm6izsAdE1WdhTHZal6IgOSxGdx9927KvgGAdnHX7sAy+KzoBQ/rNo5eGsmaoct1HWxY6bltKKF2e3a02A==}
+    engines: {node: '>=14'}
 
   hexo-front-matter@4.2.1:
     resolution: {integrity: sha512-sJJI0GNmejYiwBvgnGRKn5V3sbODB4dNPr8jyw2Qp0PRHr4Uuyv8iyxw6WfK3+T7yvzYvJOh+tZ7jnwr2BYARA==}
@@ -1132,6 +1143,8 @@ snapshots:
     dependencies:
       safe-buffer: 5.1.2
 
+  basic-ftp@5.3.1: {}
+
   binary-extensions@2.3.0: {}
 
   bluebird@3.7.2: {}
@@ -1450,6 +1463,10 @@ snapshots:
       picocolors: 1.1.1
       resolve: 1.22.12
       tildify: 2.0.0
+
+  hexo-deployer-ftpsync@0.2.0:
+    dependencies:
+      basic-ftp: 5.3.1
 
   hexo-front-matter@4.2.1:
     dependencies:
