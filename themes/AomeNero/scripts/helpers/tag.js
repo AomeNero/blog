@@ -11,7 +11,8 @@ module.exports = (hexo) => {
     classNames.before = classNames.before || '';
 
     const tag_dict = {};
-    for (const tag of tags) {
+    // site.tags 是 Warehouse Query(无 Symbol.iterator),先 toArray 转真数组再迭代
+    for (const tag of tags.toArray()) {
       if (/^[0-9]/.test(tag.name)) {
         if (!tag_dict['0-9']) {
           tag_dict['0-9'] = [];
