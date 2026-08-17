@@ -8,6 +8,8 @@
 /* 作用域含 :root —— 头部统计/页脚等元素在 main 之外,仅 main 作用域会回落黑色初始值 */
 :root,
 main {
+  /* 基础继承色:giscus 的计数/评论正文等元素不带 color 工具类,靠继承取色 */
+  color: var(--color-fg-default);
   /* 文本 */
   --color-fg-default: #161616;
   --color-fg-muted: #5c5c5c;

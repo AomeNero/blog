@@ -11,7 +11,7 @@ defaultTheme: default # 可选 light、dark 或 default
 favicon: /images/favicon.webp
 avatar: /images/logo.webp
 logo_dir: /images/logo@2x.webp
-asset_version: 17 # 修改 bundle.js/css 后递增,用于强制浏览器刷新缓存
+asset_version: 18 # 修改 bundle.js/css 后递增,用于强制浏览器刷新缓存
 
 # 字体配置（enable: false 时使用主题内置 Open Sans 方案）
 font:
