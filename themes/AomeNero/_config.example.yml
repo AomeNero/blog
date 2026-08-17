@@ -145,8 +145,8 @@ giscus:
   reactions_enabled: 1 # 评论表情反应
   input_position: bottom # 评论框位置 top/bottom
   theme: # 留空跟随站点明暗;或内置名/自定义 CSS 绝对地址(固定)
-  light_theme: # 跟随模式亮色主题:内置名或以 / 开头的站点路径,默认 light;主题内置 /css/comments/giscus-light.css
-  dark_theme: # 跟随模式暗色主题,默认 dark;主题内置 /css/comments/giscus-dark.css
+  light_theme: # 跟随模式亮色主题:giscus 内置名(如 light)或以 / 开头的站点自定义 CSS 路径,默认 light
+  dark_theme: # 跟随模式暗色主题,同上,默认 dark(如 dark_dimmed)
   lang: zh-CN
 
 # 百度统计设置
