@@ -5,11 +5,19 @@ import { router } from './router';
 let config: CommentConfig | null = null;
 
 // giscus 主题跟随:站点明暗状态存于 <html theme="..."> 属性(dark-light-toggle 维护)
+// giscus iframe 在 giscus.app 域下,自定义 CSS 必须是绝对地址(相对路径会解析到 giscus.app)
+function toThemeUrl(v: string): string {
+  return v.startsWith('/') ? `${location.origin}${v}` : v;
+}
+
 function resolveGiscusTheme(): string {
+  const g = config?.giscus;
+  const light = toThemeUrl(g?.light_theme || 'light');
+  const dark = toThemeUrl(g?.dark_theme || 'dark');
   const attr = document.querySelector('html')?.getAttribute('theme') ?? 'default';
-  if (attr === 'dark') return 'dark';
-  if (attr === 'light') return 'light';
-  return 'preferred_color_scheme';
+  if (attr === 'dark') return dark;
+  if (attr === 'light') return light;
+  return window.matchMedia('(prefers-color-scheme: dark)').matches ? dark : light;
 }
 
 let siteThemeObserver: MutationObserver | null = null;
@@ -91,7 +99,7 @@ export async function load(retry = 3) {
         'data-emit-metadata': '0',
         'data-input-position': g.input_position || 'bottom',
         // 配置 theme 留空则跟随站点明暗(含切换时 postMessage 热更新),填值则固定
-        'data-theme': g.theme || resolveGiscusTheme(),
+        'data-theme': g.theme ? toThemeUrl(g.theme) : resolveGiscusTheme(),
         'data-lang': g.lang || 'zh-CN',
       };
       for (const [k, v] of Object.entries(attrs)) s.setAttribute(k, v);

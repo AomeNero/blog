@@ -39,6 +39,8 @@ interface GiscusConfig {
   reactions_enabled?: number;
   input_position?: string;
   theme?: string;
+  light_theme?: string;
+  dark_theme?: string;
   lang?: string;
 }
 
