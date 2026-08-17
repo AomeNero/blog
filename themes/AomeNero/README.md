@@ -18,7 +18,7 @@ AomeNero 的个人博客主题。前端 JS 打包后仅约 40KB，加载极快�
 - 多语言（I18n）支持
 - 可选搜索框（基于 Fuse.js 模糊搜索）
 - 可选标签云
-- 评论系统支持（Valine / Gitalk / Gitment 等，见 `_config.yml`）
+- 评论系统支持（Giscus / Valine / Gitalk / Gitment 等，见 `_config.yml`）
 - Ajax 无刷新切换页面，减少视觉噪音
 - 移动端适配
 - 文章版权声明、字数统计、社交账号、备案号、百度统计

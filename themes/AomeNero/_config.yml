@@ -12,7 +12,7 @@ defaultTheme: default # 可选 light、dark 或 default
 favicon: /images/favicon.webp
 avatar: /images/logo.webp
 logo_dir: /images/logo@2x.webp
-asset_version: 13 # 修改 bundle.js/css 后递增,用于强制浏览器刷新缓存
+asset_version: 14 # 修改 bundle.js/css 后递增,用于强制浏览器刷新缓存
 
 # 字体配置（enable: false 时使用主题内置 Open Sans 方案）
 font:
@@ -138,6 +138,20 @@ gitalk:
   repo: 'Repo to store comments'
   client_id: 'Your client ID'
   client_secret: 'Your client secret'
+
+# Giscus 评论(基于 GitHub Discussions) https://giscus.app
+# 需公开仓库 + 开启 Discussions + 安装 giscus app,参数在 giscus.app 生成
+giscus:
+  enable: false
+  repo: # 如 '你的用户名/仓库名'(建议独立评论仓库)
+  repo_id: # giscus.app 生成
+  category: Announcements
+  category_id: # giscus.app 生成
+  mapping: pathname # pathname/url/title/og:title 等,见 giscus 文档
+  reactions_enabled: 1 # 评论表情反应
+  input_position: bottom # 评论框位置 top/bottom
+  theme: light # light/dark/preferred_color_scheme 或自定义主题 CSS 地址
+  lang: zh-CN
 
 # 百度统计设置
 # 请访问 https://tongji.baidu.com/

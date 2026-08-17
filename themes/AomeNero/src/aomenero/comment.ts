@@ -49,6 +49,34 @@ export async function load(retry = 3) {
     });
     gitalk.render('gitalk_container');
   }
+  if (config.giscus?.enable) {
+    // giscus 无 SDK render() 接口,嵌入方式就是往容器塞带 data-* 的 script,由其自替换为 iframe
+    // Ajax 换页/缓存回退时容器是全新的,每次挂载前清空重建即可
+    const container = document.querySelector('.giscus-container');
+    if (container) {
+      container.innerHTML = '';
+      const g = config.giscus;
+      const s = document.createElement('script');
+      s.src = 'https://giscus.app/client.js';
+      s.async = true;
+      s.crossOrigin = 'anonymous';
+      const attrs: Record<string, string> = {
+        'data-repo': g.repo,
+        'data-repo-id': g.repo_id,
+        'data-category': g.category,
+        'data-category-id': g.category_id,
+        'data-mapping': g.mapping || 'pathname',
+        'data-strict': '0',
+        'data-reactions-enabled': String(g.reactions_enabled ?? 1),
+        'data-emit-metadata': '0',
+        'data-input-position': g.input_position || 'bottom',
+        'data-theme': g.theme || 'light',
+        'data-lang': g.lang || 'zh-CN',
+      };
+      for (const [k, v] of Object.entries(attrs)) s.setAttribute(k, v);
+      container.appendChild(s);
+    }
+  }
 }
 
 router.onPageChange(() => load().catch(() => {}));

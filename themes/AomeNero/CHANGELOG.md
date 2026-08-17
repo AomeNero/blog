@@ -9,6 +9,7 @@
 - 侧栏 LaoA GrokBot 动态头像（25 套表情、眨眼、果冻动作，兼容 Ajax 换页重挂载）
 - 文章 banner：front-matter `banner:` 字段在标题上方渲染横幅
 - banner 圆角配置化：`banner_radius`（默认 `10px`，设 `0` 恢复直角）
+- Giscus 评论支持：`giscus` 配置块（GitHub Discussions），参数由 giscus.app 生成，兼容 Ajax 换页重挂载
 - 字体配置化：`_config.yml` 的 `font` 块（全局/标题/导航/文章/代码），渲染时注入 CSS 变量，`enable: false` 回落内置方案
 - `asset_version` 配置：bundle 引用带版本参数，强制浏览器刷新缓存
 - `tools/release.cjs` 发版打包（`npm run release` 产出含构建产物的 zip）

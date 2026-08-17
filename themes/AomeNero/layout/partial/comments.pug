@@ -1,4 +1,4 @@
-- var theme_config = { valine: theme.valine, gitment: theme.gitment, gitalk: theme.gitalk, duoshuo: theme.duoshuo, disqus: theme.disqus, gentie: theme.gentie, youyan: theme.youyan };
+- var theme_config = { valine: theme.valine, gitment: theme.gitment, gitalk: theme.gitalk, giscus: theme.giscus, duoshuo: theme.duoshuo, disqus: theme.disqus, gentie: theme.gentie, youyan: theme.youyan };
 script AomeNero.comment.setConfig(!{ JSON.stringify(theme_config) })
 
 mixin require_comment_scripts
@@ -16,6 +16,8 @@ mixin require_comment_scripts
     if theme.gitalk.enable == true
       link(rel="stylesheet", href=url_for("css/comments/gittalk.css"))
       script(src="https://unpkg.com/gitalk/dist/gitalk.min.js")
+
+  //- giscus 无需预载 SDK:client.js 携带 data-* 挂载到容器自替换为 iframe,由 comment.ts 在换页时重挂
 
 mixin make_comments
   if theme.always_enable_comments || page.comments
@@ -95,3 +97,8 @@ mixin make_comments
       if theme.gitalk.enable == true
         a#comments
         #gitalk_container(style="padding: 10px")
+
+    if theme.giscus
+      if theme.giscus.enable == true
+        a#comments
+        .giscus-container(style="margin: 0 30px")
