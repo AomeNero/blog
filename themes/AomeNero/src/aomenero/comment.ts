@@ -4,6 +4,26 @@ import { router } from './router';
 
 let config: CommentConfig | null = null;
 
+// giscus 主题跟随:站点明暗状态存于 <html theme="..."> 属性(dark-light-toggle 维护)
+function resolveGiscusTheme(): string {
+  const attr = document.querySelector('html')?.getAttribute('theme') ?? 'default';
+  if (attr === 'dark') return 'dark';
+  if (attr === 'light') return 'light';
+  return 'preferred_color_scheme';
+}
+
+let siteThemeObserver: MutationObserver | null = null;
+
+// giscus 配置 theme 留空时,监听站点明暗切换并 postMessage 热更新 iframe 主题
+function observeSiteTheme() {
+  if (siteThemeObserver) return;
+  siteThemeObserver = new MutationObserver(() => {
+    const frame = document.querySelector<HTMLIFrameElement>('iframe.giscus-frame');
+    frame?.contentWindow?.postMessage({ giscus: { setConfig: { theme: resolveGiscusTheme() } } }, 'https://giscus.app');
+  });
+  siteThemeObserver.observe(document.documentElement, { attributes: true, attributeFilter: ['theme'] });
+}
+
 export async function load(retry = 3) {
   if (!config) return;
   const id = (await AomeNero.getPageTitle()).slice(0, 50);
@@ -70,11 +90,13 @@ export async function load(retry = 3) {
         'data-reactions-enabled': String(g.reactions_enabled ?? 1),
         'data-emit-metadata': '0',
         'data-input-position': g.input_position || 'bottom',
-        'data-theme': g.theme || 'light',
+        // 配置 theme 留空则跟随站点明暗(含切换时 postMessage 热更新),填值则固定
+        'data-theme': g.theme || resolveGiscusTheme(),
         'data-lang': g.lang || 'zh-CN',
       };
       for (const [k, v] of Object.entries(attrs)) s.setAttribute(k, v);
       container.appendChild(s);
+      if (!g.theme) observeSiteTheme();
     }
   }
 }
