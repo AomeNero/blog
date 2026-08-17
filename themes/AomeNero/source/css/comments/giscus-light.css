@@ -68,6 +68,12 @@ main {
   --color-danger-subtle: rgba(207, 34, 46, 0.1);
   --color-primer-shadow-inset: 0 0 #0000;
 
+  /* 表情反应扩展(缺省会回落黑色初始值) */
+  --color-scale-gray-7: #d8d8d8;
+  --color-scale-blue-8: #cfe0f5;
+  --color-social-reaction-bg-hover: var(--color-scale-gray-7);
+  --color-social-reaction-bg-reacted-hover: var(--color-scale-blue-8);
+
   /* 评论区代码高亮(接近 GitHub Light) */
   --color-prettylights-syntax-comment: #6e7781;
   --color-prettylights-syntax-constant: #0550ae;
