@@ -5,11 +5,13 @@
  *   前景 #ffffff · 背景 #282828 · 强调 #b5ceff
  * 用法:_config.yml 的 giscus.dark_theme 设为 /css/comments/giscus-dark.css
  */
+/* 作用域含 :root —— 头部统计/页脚等元素在 main 之外,仅 main 作用域会回落黑色初始值 */
+:root,
 main {
   /* 文本 */
-  --color-fg-default: #ffffff;
-  --color-fg-muted: #a8a8a8;
-  --color-fg-subtle: #7a7a7a;
+  --color-fg-default: #eaeaea;
+  --color-fg-muted: #b8b8b8;
+  --color-fg-subtle: #8a8a8a;
 
   /* 画布 */
   --color-canvas-default: #282828;

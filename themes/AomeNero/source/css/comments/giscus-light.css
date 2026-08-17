@@ -5,6 +5,8 @@
  *   前景 #161616 · 背景 #ffffff · 强调 #4786d6
  * 用法:_config.yml 的 giscus.light_theme 设为 /css/comments/giscus-light.css
  */
+/* 作用域含 :root —— 头部统计/页脚等元素在 main 之外,仅 main 作用域会回落黑色初始值 */
+:root,
 main {
   /* 文本 */
   --color-fg-default: #161616;
