@@ -6,8 +6,11 @@ let config: CommentConfig | null = null;
 
 // giscus 主题跟随:站点明暗状态存于 <html theme="..."> 属性(dark-light-toggle 维护)
 // giscus iframe 在 giscus.app 域下,自定义 CSS 必须是绝对地址(相对路径会解析到 giscus.app)
+// 站点路径追加 asset_version 版本参数,改 CSS 后递增即可令 iframe 缓存失效
 function toThemeUrl(v: string): string {
-  return v.startsWith('/') ? `${location.origin}${v}` : v;
+  if (!v.startsWith('/')) return v;
+  const ver = config?.asset_version;
+  return `${location.origin}${v}${ver ? `?v=${ver}` : ''}`;
 }
 
 function resolveGiscusTheme(): string {

@@ -49,4 +49,5 @@ export interface CommentConfig {
   gitment?: GitmentConfig;
   gitalk?: GitalkConfig;
   giscus?: GiscusConfig;
+  asset_version?: string | number; // 主题资源版本号,用于 giscus 自定义 CSS 破缓存
 }
