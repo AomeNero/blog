@@ -111,6 +111,10 @@ main {
   --color-prettylights-syntax-constant-other-reference-link: #96d0ff;
 }
 
+.w-full.mx-auto{
+	color: #b4b4b4 !important;
+}
+
 main .pagination-loader-container {
   background-image: url(https://github.com/images/modules/pulls/progressive-disclosure-line-dark.svg);
 }
