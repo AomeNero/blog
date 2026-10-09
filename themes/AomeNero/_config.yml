@@ -61,7 +61,7 @@ copyright:
   # title: 文章标题
   # copyright: disabled
   # ---
-  show: true
+  show: false
   # 默认版权声明
   default: ''
   # 是否在版权声明中显示文章作者
