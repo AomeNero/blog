@@ -4,7 +4,7 @@
 
 ## 简介
 
-本仓库是 AomeNero 的个人博客站点源码。静态站点由 [Hexo](https://hexo.io/) 生成,包管理器使用 **pnpm**,前端使用自用的 **AomeNero** 主题。该主题由 Lhcfl 的 [Anatolo](https://github.com/Lhcfl/hexo-theme-anatolo)(MIT)fork 而来,经重命名、品牌替换、注释汉化后自用。
+本仓库是 AomeNero 的个人博客站点源码。静态站点由 [Hexo](https://hexo.io/) 生成,包管理器使用 **pnpm**,前端使用自用的 **AomeNero** 主题。
 
 线上地址:<https://www.aomenero.com>
 
@@ -117,7 +117,7 @@ pnpm --dir themes/AomeNero --ignore-workspace build
 ## 许可
 
 - 站点内容(文章等):CC-BY-SA-3.0
-- AomeNero 主题:MIT(基于 Lhcfl 的 Anatolo,详见 `themes/AomeNero/LICENSE`)
+- AomeNero 主题:MIT(详见 `themes/AomeNero/LICENSE`)
 
 ---
 
