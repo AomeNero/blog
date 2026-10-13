@@ -47,7 +47,7 @@ comments: false
 
 <div class="friend-link" data-avatar="/images/friends/perplexity.ico" data-href="https://www.perplexity.ai" data-title="Perplexity" data-description="AI 搜索引擎"></div>
 
-<div class="friend-link" data-avatar="/images/friends/gpt-image2.svg" data-href="https://gpt-image2.canghe.ai" data-title="GPT-Image2 Prompt Gallery" data-description="GPT-Image2 提示词画廊"></div>
+<div class="friend-link" data-avatar="/images/friends/gpt-image2.webp" data-href="https://gpt-image2.canghe.ai" data-title="GPT-Image2 Prompt Gallery" data-description="GPT-Image2 提示词画廊"></div>
 
 <div class="friend-link" data-avatar="/images/friends/huggingface.ico" data-href="https://huggingface.co" data-title="Hugging Face" data-description="全球最大的 AI 模型与数据集社区"></div>
 
