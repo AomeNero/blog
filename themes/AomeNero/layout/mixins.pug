@@ -46,11 +46,11 @@ mixin make_post(item, is_detail)
             span.date= date(item.date, "YYYY-MM-DD")
             if item.categories
               each cat in item.categories.sort('posts').data
-                a.tag(href=config.root + cat.path, title=cat.name)= cat.name + " "
+                a.tag(href=url_for(cat.path), title=cat.name)= cat.name + " "
             if item.tags
               each tag in item.tags.sort('posts').data
                 i.fa.fa-tag
-                a.tag(href=config.root + tag.path, title=tag.name)= tag.name + " "
+                a.tag(href=url_for(tag.path), title=tag.name)= tag.name + " "
 
             span
               - var words = word_count(item.content);

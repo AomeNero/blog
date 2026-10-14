@@ -8,7 +8,7 @@ include toc
         .logo-avatar
           img(src=url_for(theme.logo_dir), alt="favicon")
         h3(title="")
-          a(href="/")= config.title
+          a(href=url_for("/"))= config.title
         if theme.description
           .description
             p!= theme.description
