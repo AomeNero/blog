@@ -1,8 +1,9 @@
 name: Theme CI
 
-# 主题兼容矩阵:全新 Hexo 站点 × hexo 6/7/8 × node 18/20/22
+# 主题兼容矩阵:全新 Hexo 站点 × hexo 6/7/8 × node 20/22
 # 验证:npm 安装主题依赖 → npm 构建前端 → hexo g 成功 → 产物断言
 # 同时证明主题构建不依赖特定包管理器(CI 全程用 npm)
+# node 18 已移除:构建链 unplugin@3 要求 node >=20.19,与主题 engines 声明一致
 
 on:
   push:
@@ -20,7 +21,7 @@ jobs:
       fail-fast: false
       matrix:
         hexo: [6, 7, 8]
-        node: [18, 20, 22]
+        node: [20, 22]
     name: 'hexo ${{ matrix.hexo }} · node ${{ matrix.node }}'
     steps:
       - uses: actions/checkout@v4
@@ -33,7 +34,10 @@ jobs:
         run: |
           mkdir site && cd site
           npm init -y >/dev/null
-          npm i hexo@${{ matrix.hexo }} hexo-renderer-pug --no-audit --no-fund
+          # 全新站点标配:generator(index/archive/category/tag)产出 index 与文章页,renderer-marked 解析 .md
+          npm i hexo@${{ matrix.hexo }} hexo-cli hexo-generator-archive hexo-generator-category hexo-generator-index hexo-generator-tag hexo-renderer-marked hexo-renderer-pug --no-audit --no-fund
+          # hexo-cli 的 find_pkg 只认 package.json 里的 hexo 对象(hexo init 会写入,npm i 不会),缺失则静默降级为打印帮助
+          npm pkg set hexo.version="${{ matrix.hexo }}"
           printf 'theme: AomeNero\nlanguage: zh-CN\ntitle: CI\n' > _config.yml
           mkdir -p source/_posts themes
           printf -- '---\ntitle: hello\nbanner: /images/banner-1.webp\n---\n\nhello\n' > source/_posts/hello.md
@@ -53,7 +57,8 @@ jobs:
 
       - name: hexo generate
         working-directory: site
-        run: npx hexo generate
+        # hexo 核心包与 hexo-cli 的 bin 同名,npm 的 .bin 链接不可控,显式调 hexo-cli 的 bin
+        run: node node_modules/hexo-cli/bin/hexo generate
 
       - name: Assert output
         working-directory: site
@@ -68,6 +73,6 @@ jobs:
         working-directory: site
         run: |
           rm -rf themes/AomeNero/source/js_complied
-          npx hexo clean
-          npx hexo generate
+          node node_modules/hexo-cli/bin/hexo clean
+          node node_modules/hexo-cli/bin/hexo generate
           test -f public/index.html

@@ -9,7 +9,7 @@
     "url": "https://github.com/AomeNero/blog"
   },
   "engines": {
-    "node": ">=18"
+    "node": ">=20"
   },
   "scripts": {
     "format:pretty": "prettier --write ./{layout,src}/**/*.{pug,scss} && prettier --write ./*.{yml,md}",
