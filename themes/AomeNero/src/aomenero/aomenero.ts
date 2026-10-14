@@ -1,11 +1,7 @@
 import { AomeNeroSearch } from '../components/search';
 import * as comment from './comment';
 import { darkLightToggle } from './dark-light-toggle';
-import { site } from './site';
-
-async function getPageTitle() {
-  return (await site.thisPage())?.title ?? document.querySelector('title')?.textContent ?? '';
-}
+import { getPageTitle, site } from './site';
 
 // 用于与静态 HTML 中元素交互的类
 export const AomeNero = {

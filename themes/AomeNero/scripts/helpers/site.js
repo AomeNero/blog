@@ -29,6 +29,7 @@ module.exports = (hexo) => {
 
   // bundle 内容哈希缓存,键为两个 bundle 文件的最大 mtime(watch 模式下重编译自动失效)
   let versionCache = { key: 0, value: '' };
+  let warnedMissing = false;
 
   /**
    * 前端 bundle 的内容哈希(sha256 前 10 位),用作静态资源版本号。
@@ -37,10 +38,19 @@ module.exports = (hexo) => {
   hexo.extend.helper.register('asset_version', () => {
     const dir = path.join(hexo.theme_dir, 'source', 'js_complied');
     const bundles = ['bundle.js', 'bundle.css'];
-    const key = Math.max(...bundles.map((f) => fs.statSync(path.join(dir, f)).mtimeMs));
-    if (versionCache.key === key) return versionCache.value;
-    const hash = bundles.reduce((h, f) => h.update(fs.readFileSync(path.join(dir, f))), crypto.createHash('sha256'));
-    versionCache = { key, value: hash.digest('hex').slice(0, 10) };
-    return versionCache.value;
+    try {
+      const key = Math.max(...bundles.map((f) => fs.statSync(path.join(dir, f)).mtimeMs));
+      if (versionCache.key === key) return versionCache.value;
+      const hash = bundles.reduce((h, f) => h.update(fs.readFileSync(path.join(dir, f))), crypto.createHash('sha256'));
+      versionCache = { key, value: hash.digest('hex').slice(0, 10) };
+      return versionCache.value;
+    } catch {
+      // git clone 用户未构建前端时产物不存在:降级为空版本号让页面照常生成,只提醒一次
+      if (!warnedMissing) {
+        hexo.log.warn('主题前端产物缺失(source/js_complied),资源版本号已降级;请先在主题目录执行 pnpm build');
+        warnedMissing = true;
+      }
+      return '';
+    }
   });
 };

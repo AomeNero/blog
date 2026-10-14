@@ -1,6 +1,6 @@
 import { CommentConfig } from '@/types/comment';
-import { AomeNero } from './aomenero';
 import { router } from './router';
+import { getPageTitle } from './site';
 import { currentTheme } from './theme-mode';
 
 let config: CommentConfig | null = null;
@@ -35,7 +35,7 @@ function observeSiteTheme() {
 
 export async function load(retry = 3) {
   if (!config) return;
-  const id = (await AomeNero.getPageTitle()).slice(0, 50);
+  const id = (await getPageTitle()).slice(0, 50);
   if (!id) return;
   if (config.valine?.enable && (window as any).Valine) {
     new (window as any).Valine({

@@ -51,6 +51,15 @@ export function followSystem(): () => void {
   const onChange = () => {
     if (readPreference() === 'system') applyTheme();
   };
-  mq.addEventListener('change', onChange);
-  return () => mq.removeEventListener('change', onChange);
+  // 旧 Safari/iOS(<14) 的 MediaQueryList 只有 addListener;两者皆无则放弃跟随(不影响初始化)
+  if (typeof mq.addEventListener === 'function') {
+    mq.addEventListener('change', onChange);
+    return () => mq.removeEventListener('change', onChange);
+  }
+  const legacy = mq as unknown as { addListener?: (cb: () => void) => void; removeListener?: (cb: () => void) => void };
+  if (typeof legacy.addListener === 'function') {
+    legacy.addListener(onChange);
+    return () => legacy.removeListener?.(onChange);
+  }
+  return () => {};
 }

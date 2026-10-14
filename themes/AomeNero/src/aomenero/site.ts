@@ -34,3 +34,8 @@ export const site = {
     return urlMap.get(site.thisPageUrl());
   },
 };
+
+/** 当前页标题:优先取 site.json 里的,退回 <title>。供评论与分享使用(comment 无需依赖 facade)。 */
+export async function getPageTitle() {
+  return (await site.thisPage())?.title ?? document.querySelector('title')?.textContent ?? '';
+}

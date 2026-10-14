@@ -59,3 +59,11 @@ jobs:
           grep -q 'js_complied/bundle.css' public/index.html
           grep -q 'post-banner' public/index.html || echo 'note: banner article not on index (list style varies), skip'
           test -s public/js_complied/bundle.js
+
+      - name: Graceful degradation without built bundle
+        working-directory: site
+        run: |
+          rm -rf themes/AomeNero/source/js_complied
+          npx hexo clean
+          npx hexo generate
+          test -f public/index.html
