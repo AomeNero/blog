@@ -47,6 +47,10 @@ jobs:
           npm run build
           test -s source/js_complied/bundle.js -a -s source/js_complied/bundle.css
 
+      - name: Unit tests
+        working-directory: site/themes/AomeNero
+        run: npm test
+
       - name: hexo generate
         working-directory: site
         run: npx hexo generate

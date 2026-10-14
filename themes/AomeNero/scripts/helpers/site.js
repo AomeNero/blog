@@ -5,12 +5,26 @@
  *     <%- duration() %>
  *     <%- word_count(content) %>
  *     <%- asset_version() %>
+ *
+ * 纯函数(wordCount / computeVersionHash)挂为导出属性供测试。
  */
 // 来自 icarus 主题
 const moment = require('moment');
 const fs = require('node:fs');
 const path = require('node:path');
 const crypto = require('node:crypto');
+
+/**
+ * 获取一段文字的字数。
+ */
+const wordCount = (content) => {
+  const text = content.replace(/<\/?[a-z][^>]*>/gi, '').trim();
+  return text ? (text.match(/[ÿ-￿]|[a-zA-Z]+/g) || []).length : 0;
+};
+
+/** bundle 内容哈希:按给定顺序串联内容取 sha256 前 10 位(纯函数,内容注入便于测试) */
+const computeVersionHash = (contents) =>
+  contents.reduce((h, c) => h.update(c), crypto.createHash('sha256')).digest('hex').slice(0, 10);
 
 /** @param {import("hexo")} hexo */
 module.exports = (hexo) => {
@@ -22,10 +36,7 @@ module.exports = (hexo) => {
   /**
    * 获取一段文字的字数。
    */
-  hexo.extend.helper.register('word_count', (content) => {
-    const text = content.replace(/<\/?[a-z][^>]*>/gi, '').trim();
-    return text ? (text.match(/[ÿ-￿]|[a-zA-Z]+/g) || []).length : 0;
-  });
+  hexo.extend.helper.register('word_count', wordCount);
 
   // bundle 内容哈希缓存,键为两个 bundle 文件的最大 mtime(watch 模式下重编译自动失效)
   let versionCache = { key: 0, value: '' };
@@ -41,8 +52,10 @@ module.exports = (hexo) => {
     try {
       const key = Math.max(...bundles.map((f) => fs.statSync(path.join(dir, f)).mtimeMs));
       if (versionCache.key === key) return versionCache.value;
-      const hash = bundles.reduce((h, f) => h.update(fs.readFileSync(path.join(dir, f))), crypto.createHash('sha256'));
-      versionCache = { key, value: hash.digest('hex').slice(0, 10) };
+      versionCache = {
+        key,
+        value: computeVersionHash(bundles.map((f) => fs.readFileSync(path.join(dir, f)))),
+      };
       return versionCache.value;
     } catch {
       // git clone 用户未构建前端时产物不存在:降级为空版本号让页面照常生成,只提醒一次
@@ -54,3 +67,6 @@ module.exports = (hexo) => {
     }
   });
 };
+
+module.exports.wordCount = wordCount;
+module.exports.computeVersionHash = computeVersionHash;

@@ -18,6 +18,7 @@
     "format": "biome format --write languages scripts source src . && prettier --write ./{layout,src}/**/*.{pug,scss} && prettier --write ./*.{yml,md}",
     "watch": "rollup -w -c ./rollup.config.mjs",
     "build": "rollup -c ./rollup.config.mjs",
+    "test": "vitest run",
     "release": "rollup -c ./rollup.config.mjs && node tools/release.cjs"
   },
   "files": [
@@ -42,7 +43,8 @@
     "rollup": "^4.21.2",
     "rollup-plugin-sass": "^1.13.2",
     "typescript": "^5.5.4",
-    "unplugin-swc": "^1.5.1"
+    "unplugin-swc": "^1.5.1",
+    "vitest": "^2.1.9"
   },
   "packageManager": "pnpm@9.9.0+sha512.60c18acd138bff695d339be6ad13f7e936eea6745660d4cc4a776d5247c540d0edee1a563695c183a66eb917ef88f2b4feb1fc25f32a7adcadc7aaf3438e99c1"
 }
