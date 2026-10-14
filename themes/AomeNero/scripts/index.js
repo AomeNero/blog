@@ -5,3 +5,4 @@ require('./generators/site_json')(hexo);
 require('./generators/tags')(hexo);
 require('./helpers/site')(hexo);
 require('./helpers/tag')(hexo);
+require('./helpers/friends')(hexo);

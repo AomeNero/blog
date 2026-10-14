@@ -1,4 +1,3 @@
-import { make_friends_list } from '@/utils/main';
 import { AomeNeroRef } from './ref';
 import { site } from './site';
 import { loadScript } from '@/utils/load-script';
@@ -258,4 +257,3 @@ export const router = {
   routeTo,
 };
 
-router.onPageChange(make_friends_list);

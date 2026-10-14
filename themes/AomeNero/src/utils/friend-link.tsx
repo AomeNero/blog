@@ -7,7 +7,7 @@ export function make_friends_list() {
       <div class="friend-link-container">
         <div class="friend-link-box">
           <aside class="friend-link-avatar">
-            <img src={avatar} href={href} />
+            <img src={avatar} />
           </aside>
           <div class="friend-link-meta">
             <div class="friend-link-title">
