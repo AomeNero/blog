@@ -19,6 +19,7 @@
     "watch": "rollup -w -c ./rollup.config.mjs",
     "build": "rollup -c ./rollup.config.mjs",
     "test": "vitest run",
+    "check": "tsc --noEmit",
     "release": "rollup -c ./rollup.config.mjs && node tools/release.cjs"
   },
   "files": [

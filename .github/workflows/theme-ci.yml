@@ -55,6 +55,10 @@ jobs:
         working-directory: site/themes/AomeNero
         run: npm test
 
+      - name: Type check
+        working-directory: site/themes/AomeNero
+        run: npm run check
+
       - name: hexo generate
         working-directory: site
         # hexo 核心包与 hexo-cli 的 bin 同名,npm 的 .bin 链接不可控,显式调 hexo-cli 的 bin

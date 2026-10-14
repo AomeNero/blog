@@ -51,8 +51,8 @@ export default class Avatar {
   private actor: HTMLElement | null = null;
   private eyeEls: SVGPathElement[] = [];
   private expression = 0;
-  private current = [] as Expression;
-  private target = [] as Expression;
+  private current: Expression = [[], []];
+  private target: Expression = [[], []];
   private morph = 1;
   private velocity = 0;
   private last = 0;
