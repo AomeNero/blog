@@ -1,5 +1,5 @@
-script
-  != '(async function(){ if (AomeNero.search == null) await AomeNero.getMsg("search-init"); AomeNero.search.config = {translation:{posts:"' + __("insight.posts") + '",pages:"' + __("insight.pages") + '",categories:"' + __("insight.categories") + '",tags:"' + __("insight.tags") + '",untitled:"' + __("insight.untitled") + '",} }; })()'
+- var search_config = { translation: { posts: __("insight.posts"), pages: __("insight.pages"), categories: __("insight.categories"), tags: __("insight.tags"), untitled: __("insight.untitled") } }
+script AomeNero.search.setConfig(!{ JSON.stringify(search_config) })
 .searchbox.ins-search.modal-cover
   .searchbox-container.ins-search-container.modal-container
     .searchbox-input-wrapper

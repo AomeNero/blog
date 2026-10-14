@@ -1,5 +1,6 @@
 import { AomeNeroRef } from './ref';
 import { site } from './site';
+import { recoverScroll, scrollToHash } from './scroll';
 import { loadScript } from '@/utils/load-script';
 
 type PageCache = { url: string; body: string; title: string; scrollY?: number };
@@ -13,6 +14,7 @@ class NotHTMLError extends Error {
 }
 
 const pageChangeFns: (() => void)[] = [];
+const PAGE_CACHE_LIMIT = 30;
 const pageCaches = new Map<string, PageCache>();
 const animating = new AomeNeroRef(false);
 const loading = new AomeNeroRef(false);
@@ -39,20 +41,6 @@ function isThisSite(url?: string) {
   return url.startsWith(site.root.href) || url.startsWith(site.base);
 }
 
-function scrollToHash(hash?: string) {
-  if (hash == null) hash = window.location.hash;
-  if (!hash) return; // 不需要
-  const sid = decodeURI(hash).slice(1);
-  const go = document.getElementById(sid);
-  if (go) {
-    window.scrollTo({
-      left: 0,
-      top: go.offsetTop + ((go.offsetParent as HTMLElement)?.offsetTop || 0) - 80,
-      behavior: 'smooth',
-    });
-  }
-}
-
 function getThisPageCache() {
   return {
     url: document.location.href,
@@ -62,8 +50,18 @@ function getThisPageCache() {
   };
 }
 
+function setPageCache(url: string, cache: PageCache) {
+  pageCaches.set(url, cache);
+  // 有界缓存:超出上限淘汰最早写入的条目,长会话内存不再无界
+  while (pageCaches.size > PAGE_CACHE_LIMIT) {
+    const oldest = pageCaches.keys().next().value;
+    if (oldest === undefined) break;
+    pageCaches.delete(oldest);
+  }
+}
+
 function cacheThisPage() {
-  pageCaches.set(document.location.href, getThisPageCache());
+  setPageCache(document.location.href, getThisPageCache());
 }
 
 function updatePageCache(state: PageCache) {
@@ -71,7 +69,7 @@ function updatePageCache(state: PageCache) {
   if (had) {
     Object.assign(had, state);
   } else {
-    pageCaches.set(state.url, state);
+    setPageCache(state.url, state);
   }
 }
 
@@ -100,49 +98,20 @@ async function withLoading(handler: () => Promise<void>) {
 async function queryPageData(link: string) {
   const cached = pageCaches.get(link);
   if (cached) return cached;
-  const res = await fetch(link).then((res) => res.text());
-  if (typeof res !== 'string') {
-    throw new NotHTMLError(link);
+  const res = await fetch(link);
+  if (!res.ok) {
+    // 非 2xx 带上状态码抛出,routeTo 的 404 分支因此可达
+    throw Object.assign(new Error(`HTTP ${res.status}`), { status: res.status, url: link });
   }
-  const body = res.match(/<main-outlet>([\s\S]*)<\/main-outlet>/)?.[1];
+  const text = await res.text();
+  const body = text.match(/<main-outlet>([\s\S]*)<\/main-outlet>/)?.[1];
   if (!body) {
     throw new NotHTMLError(link);
   }
-  const head = res.match(/<head>([\s\S]*)<\/head>/)?.[1];
+  const head = text.match(/<head>([\s\S]*)<\/head>/)?.[1];
   let title = head?.match(/<title>([\s\S]*)<\/title>/)?.[1];
   title ??= document.title;
   return { url: link, body, title };
-}
-
-function recoveryScrollY(scrollY?: number) {
-  const sidebarheight = document.getElementsByClassName('sidebar')[0].clientHeight - 40;
-  if (!scrollY) {
-    if (window.innerWidth > 960) {
-      window.scrollTo({
-        left: 0,
-        top: 0,
-        behavior: 'smooth',
-      });
-    } else {
-      if (window.location.href === site.url_for('/') || window.location.href.slice(0, -1) === site.url_for('/')) {
-        window.scrollTo({
-          left: 0,
-          top: 0,
-          behavior: 'smooth',
-        });
-      } else {
-        window.scrollTo({
-          left: 0,
-          top: sidebarheight,
-        });
-      }
-    }
-  } else {
-    window.scrollTo({
-      left: 0,
-      top: scrollY,
-    });
-  }
 }
 
 /**
@@ -168,7 +137,7 @@ async function replacePageContent({ body, title, url, scrollY }: PageCache, push
 
   handlePage();
 
-  recoveryScrollY(scrollY);
+  recoverScroll(scrollY);
 }
 
 async function routeToNewPage(url: URL, pushState: boolean) {
@@ -179,7 +148,6 @@ async function routeToNewPage(url: URL, pushState: boolean) {
     const res = await queryPageData(url.href);
     await replacePageContent(res, pushState);
   });
-  handlePage();
 }
 
 function handlePage() {
@@ -196,6 +164,8 @@ function handlePage() {
 
 function makeLink() {
   document.addEventListener('click', (ev) => {
+    // 修饰键/非左键交还浏览器默认行为(新标签打开、下载等)
+    if (ev.metaKey || ev.ctrlKey || ev.shiftKey || ev.altKey || ev.button !== 0) return;
     let target = ev.target as HTMLAnchorElement;
     while (target) {
       if (target.onclick) return;

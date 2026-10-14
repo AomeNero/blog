@@ -5,14 +5,19 @@ import { SiteStatic } from './site-static';
 const urlMap = new Map<string, WebPage>();
 const siteData = new AomeNeroDynamicResource<Site>('site.json');
 
-siteData.data().then((data) => {
-  for (const key of ['pages', 'posts', 'tags', 'categories'] as const) {
-    for (const page of data[key] ?? []) {
-      const prettyPath = page.path?.replaceAll('index.html', '') || '';
-      urlMap.set(prettyPath, page);
+siteData
+  .data()
+  .then((data) => {
+    for (const key of ['pages', 'posts', 'tags', 'categories'] as const) {
+      for (const page of data[key] ?? []) {
+        const prettyPath = page.path?.replaceAll('index.html', '') || '';
+        urlMap.set(prettyPath, page);
+      }
     }
-  }
-});
+  })
+  .catch(() => {
+    // dynamic-resource 已 console.error 过,这里只吞掉避免额外的 unhandled rejection 噪音
+  });
 
 export const site = {
   ...SiteStatic,

@@ -20,7 +20,12 @@ type SearchResult =
 
 export class AomeNeroSearch extends Component {
   searchData: AomeNeroDynamicResource<SearchResource>;
-  config: Record<string, any> = {};
+  private config: Record<string, any> = {};
+
+  /** 运行期配置(翻译文案等),由模板经 JSON 注入,与 comment.setConfig 同一模式 */
+  setConfig(conf: Record<string, any>) {
+    this.config = conf;
+  }
   showing = false;
 
   get mainEl() {
@@ -234,13 +239,21 @@ export class AomeNeroSearch extends Component {
 
   search() {
     const keyword = this.inputEl.value;
-    this.getSearchResult(keyword).then((res) => {
-      this.containerEl.innerHTML = '';
-      for (const [key, result] of res) {
-        const section = this.makeSection(key, result);
-        if (section) this.containerEl.appendChild(section);
-      }
-    });
+    this.getSearchResult(keyword)
+      .then((res) => {
+        this.containerEl.innerHTML = '';
+        for (const [key, result] of res) {
+          const section = this.makeSection(key, result);
+          if (section) this.containerEl.appendChild(section);
+        }
+      })
+      .catch(() => {
+        // content.json 加载失败时给用户可见的失败态,而不是停在 "Seraching..."
+        this.containerEl.innerHTML = '';
+        const tip = document.createElement('p');
+        tip.textContent = '索引加载失败,请刷新重试';
+        this.containerEl.appendChild(tip);
+      });
   }
 
   selectItemByDiff(value: number) {
