@@ -2,16 +2,9 @@ import { AomeNeroRef } from './ref';
 import { site } from './site';
 import { recoverScroll, scrollToHash } from './scroll';
 import { loadScript } from '@/utils/load-script';
+import { HttpError, NotHTMLError, shouldJumpToErrorPage } from './router-errors';
 
 type PageCache = { url: string; body: string; title: string; scrollY?: number };
-
-class NotHTMLError extends Error {
-  url: string;
-  constructor(url: string) {
-    super();
-    this.url = url;
-  }
-}
 
 const pageChangeFns: (() => void)[] = [];
 const PAGE_CACHE_LIMIT = 30;
@@ -100,8 +93,8 @@ async function queryPageData(link: string) {
   if (cached) return cached;
   const res = await fetch(link);
   if (!res.ok) {
-    // 非 2xx 带上状态码抛出,routeTo 的 404 分支因此可达
-    throw Object.assign(new Error(`HTTP ${res.status}`), { status: res.status, url: link });
+    // 非 2xx 带上状态码抛出,routeTo 据此决定整页跳转或就地提示
+    throw new HttpError(res.status, link);
   }
   const text = await res.text();
   const body = text.match(/<main-outlet>([\s\S]*)<\/main-outlet>/)?.[1];
@@ -201,12 +194,9 @@ async function routeTo(link: string, pushState = true) {
       history.replaceState({ time: new Date() }, document.title, link);
       scrollToHash(url.hash);
     } else {
-      routeToNewPage(url, pushState).catch((err: any) => {
-        if (err.status === 404) {
-          window.location.href = err.url;
-          return;
-        }
-        if (err instanceof NotHTMLError) {
+      routeToNewPage(url, pushState).catch((err: unknown) => {
+        // 404/500 与非 HTML 响应整页跳转真实错误页(dd659a3);其余错误留在当前页提示
+        if (err instanceof NotHTMLError || (err instanceof HttpError && shouldJumpToErrorPage(err.status))) {
           window.location.href = err.url;
           return;
         }
