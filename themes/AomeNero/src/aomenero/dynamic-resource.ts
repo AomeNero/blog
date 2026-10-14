@@ -22,7 +22,7 @@ export class AomeNeroDynamicResource<T> {
       });
   }
   async data() {
-    await this.loaded.unitl(true);
+    await this.loaded.until(true);
     if (this.failed) throw new Error(`资源加载失败: ${this.failed.message}`, { cause: this.failed });
     return this.__data as T;
   }

@@ -48,12 +48,12 @@ export class AomeNeroRef<T> {
     return false;
   }
   /** 直到值在 vals 中 */
-  async unitl(...vals: T[]) {
+  async until(...vals: T[]) {
     while (!this._checkin(vals)) await this.nextVal();
     return this.value;
   }
   /** 直到值不在 vals 中 */
-  async unitlNot(...vals: T[]) {
+  async untilNot(...vals: T[]) {
     while (this._checkin(vals)) await this.nextVal();
     return this.value;
   }

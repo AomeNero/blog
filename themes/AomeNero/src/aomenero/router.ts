@@ -120,7 +120,7 @@ async function queryPageData(link: string) {
 async function replacePageContent({ body, title, url, scrollY }: PageCache, pushState = true) {
   cacheThisPage();
 
-  await animating.unitl(false);
+  await animating.until(false);
 
   if (pushState) {
     history.pushState({ time: new Date(), url: url }, '', url);
