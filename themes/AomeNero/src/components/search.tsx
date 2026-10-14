@@ -251,7 +251,7 @@ export class AomeNeroSearch extends Component {
         // content.json 加载失败时给用户可见的失败态,而不是停在 "Seraching..."
         this.containerEl.innerHTML = '';
         const tip = document.createElement('p');
-        tip.textContent = '索引加载失败,请刷新重试';
+        tip.textContent = this.config.translation['load_failed'];
         this.containerEl.appendChild(tip);
       });
   }

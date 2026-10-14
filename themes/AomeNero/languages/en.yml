@@ -31,6 +31,7 @@ insight:
     categories: 'Categories'
     tags: 'Tags'
     untitled: '(Untitled)'
+    load_failed: 'Failed to load search index. Please refresh and retry.'
 
 Share_text: "I have found a great blog."
 

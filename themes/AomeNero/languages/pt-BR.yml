@@ -32,5 +32,6 @@ insight:
     categories: 'Categorias'
     tags: 'Tags'
     untitled: '(Sem título)'
+    load_failed: 'Falha ao carregar o índice de busca. Atualize e tente novamente.'
 
 Share_text: "Compartilhar artigo:"
