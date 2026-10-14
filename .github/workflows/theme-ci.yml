@@ -34,8 +34,8 @@ jobs:
           mkdir site && cd site
           npm init -y >/dev/null
           npm i hexo@${{ matrix.hexo }} hexo-renderer-pug --no-audit --no-fund
-          npx hexo config theme AomeNero language zh-CN title "CI"
-          mkdir -p source/_posts
+          printf 'theme: AomeNero\nlanguage: zh-CN\ntitle: CI\n' > _config.yml
+          mkdir -p source/_posts themes
           printf -- '---\ntitle: hello\nbanner: /images/banner-1.webp\n---\n\nhello\n' > source/_posts/hello.md
           cp -r ../themes/AomeNero themes/AomeNero
           rm -rf themes/AomeNero/node_modules themes/AomeNero/dist
