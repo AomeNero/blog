@@ -5,14 +5,13 @@ build_on_generate: false # 设 true 时 hexo generate/server 自动编译主题�
 keywords: Blog,博客,Hexo
 author: # 作者名，用于版权声明等；留空则不显示
 description: # 侧栏站点描述；留空则不显示
-defaultTheme: default # 可选 light、dark 或 default
+defaultTheme: default # 初始偏好:default=跟随系统,或固定 light/dark;无 JS 访客的回退(default 按 light 渲染)
 
 # 图标
 # 如果尺寸不对,请直接替换 source/images/favicon.webp(主题不再使用 Stylus)
 favicon: /images/favicon.webp
 avatar: /images/logo.webp
 logo_dir: /images/logo@2x.webp
-asset_version: 18 # 修改 bundle.js/css 后递增,用于强制浏览器刷新缓存
 
 # 字体配置（enable: false 时使用主题内置 Open Sans 方案）
 font:

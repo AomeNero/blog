@@ -72,8 +72,8 @@ pnpm watch      # 监听 src 自动重新编译
 pnpm format     # 格式化代码
 ```
 
-> 构建 bundle 后记得把 `_config.yml` 的 `asset_version` 加一，
-> 强制浏览器放弃旧缓存（`head.pug` 以 `?v=` 引用 bundle）。
+> 静态资源版本号取自 bundle 内容哈希（`asset_version` helper），
+> 重新构建后自动失效旧缓存（`head.pug` 以 `?v=` 引用 bundle），无需手动维护。
 
 字体配置：`_config.yml` 的 `font` 块在渲染时由 `head.pug` 注入为
 `:root` CSS 变量（`--font-*`），SCSS 侧以 `var(--font-*, 内置默认值)` 消费；

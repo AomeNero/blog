@@ -34,15 +34,8 @@
   @include genColor('tertiary', $tertiary, $secondary);
 }
 
-html[theme='default'] {
-  @include lightTheme();
-}
-@media (prefers-color-scheme: dark) {
-  html[theme='default'] {
-    @include darkTheme();
-  }
-}
-
+// html[theme] 恒为二值 'light' | 'dark'(由 src/aomenero/theme-mode.ts 解析,head.pug 内联脚本启动时设置)。
+// 「跟随系统」在 CSS 层不存在:偏好为 system 的访客,属性也会被解析成具体值后才落到这里。
 html[theme='dark'] {
   @include darkTheme();
 }

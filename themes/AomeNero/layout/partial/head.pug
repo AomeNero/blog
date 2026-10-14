@@ -22,7 +22,18 @@ meta#site_data_static(data-url=url_for("/"))
 meta(name="renderer", content="webkit")
 link(rel="shortcut icon", type="image/x-icon", href=url_for(theme.favicon))
 
-link(rel="stylesheet", href=url_for("js_complied/bundle.css") + "?v=" + theme.asset_version)
+//- 明暗主题启动脚本:必须在样式表之前运行,消除「跟随系统」用户的闪烁。
+//- 解析规则与 src/aomenero/theme-mode.ts 的 resolve() 配对,改动需同步两处。
+script.
+  (function () {
+    try {
+      var p = localStorage.getItem('theme');
+      var d = window.matchMedia('(prefers-color-scheme: dark)').matches;
+      document.documentElement.setAttribute('theme', p === 'light' || p === 'dark' ? p : d ? 'dark' : 'light');
+    } catch (e) {}
+  })();
+
+link(rel="stylesheet", href=url_for("js_complied/bundle.css") + "?v=" + asset_version())
 link(rel="stylesheet", href=url_for("css/font-awesome.min.css"))
 link(rel="stylesheet", href=url_for("css/fonts.css"))
 link(rel="alternate", type="application/atom+xml", title="ATOM 1.0", href="/atom.xml")
@@ -57,7 +68,7 @@ if theme.font && theme.font.enable
 if theme.banner_radius
   style!= ':root{--banner-radius: ' + theme.banner_radius + ';}'
 
-script(src=url_for("js_complied/bundle.js") + "?v=" + theme.asset_version)
+script(src=url_for("js_complied/bundle.js") + "?v=" + asset_version())
 if theme.Baidutongji
   script(src=url_for("js/baidu-tongji.js"))
 

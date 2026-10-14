@@ -1,12 +1,13 @@
 import { CommentConfig } from '@/types/comment';
 import { AomeNero } from './aomenero';
 import { router } from './router';
+import { currentTheme } from './theme-mode';
 
 let config: CommentConfig | null = null;
 
-// giscus 主题跟随:站点明暗状态存于 <html theme="..."> 属性(dark-light-toggle 维护)
+// giscus 主题跟随:站点明暗状态存于 <html theme> 属性(theme-mode 维护,恒为 'light'|'dark')
 // giscus iframe 在 giscus.app 域下,自定义 CSS 必须是绝对地址(相对路径会解析到 giscus.app)
-// 站点路径追加 asset_version 版本参数,改 CSS 后递增即可令 iframe 缓存失效
+// 站点路径追加 asset_version 版本参数(bundle 内容哈希,构建时自动变化)令 iframe 缓存失效
 function toThemeUrl(v: string): string {
   if (!v.startsWith('/')) return v;
   const ver = config?.asset_version;
@@ -17,10 +18,7 @@ function resolveGiscusTheme(): string {
   const g = config?.giscus;
   const light = toThemeUrl(g?.light_theme || 'light');
   const dark = toThemeUrl(g?.dark_theme || 'dark');
-  const attr = document.querySelector('html')?.getAttribute('theme') ?? 'default';
-  if (attr === 'dark') return dark;
-  if (attr === 'light') return light;
-  return window.matchMedia('(prefers-color-scheme: dark)').matches ? dark : light;
+  return currentTheme() === 'dark' ? dark : light;
 }
 
 let siteThemeObserver: MutationObserver | null = null;

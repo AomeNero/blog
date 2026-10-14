@@ -1,5 +1,6 @@
 doctype
-html(lang="zh-CN", theme=theme.defaultTheme.replaceAll("-mode", ""))
+//- 服务端按 defaultTheme 给出二值猜测:仅供无 JS 访客回退(default 按 light);有 JS 时 head.pug 内联脚本会在样式表应用前纠正
+html(lang="zh-CN", theme=(theme.defaultTheme == "dark" ? "dark" : "light"))
   head
     include head
 

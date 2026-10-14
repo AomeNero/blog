@@ -1,25 +1,10 @@
-function getTheme() {
-  return document.querySelector('html')!.getAttribute('theme') ?? 'default';
-}
+import { applyTheme, currentTheme, writePreference } from './theme-mode';
 
-function setTheme() {
-  const theme = localStorage.getItem('theme');
-  if (theme) {
-    document.querySelector('html')!.setAttribute('theme', theme);
-  }
-}
-
-setTheme();
-
-export function darkLightToggle() {
-  let themeNow = getTheme();
-  if (themeNow === 'default') {
-    themeNow = window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'true';
-  }
-  if (themeNow === 'dark') {
-    localStorage.setItem('theme', 'light');
-  } else {
-    localStorage.setItem('theme', 'dark');
-  }
-  setTheme();
+/**
+ * 明暗切换按钮:把当前生效主题的反面写入为显式偏好。
+ * 偏好为 system 的用户点一次即固定为一侧,再点切到另一侧(与旧版两态循环体验一致)。
+ */
+export function darkLightToggle(): void {
+  writePreference(currentTheme() === 'dark' ? 'light' : 'dark');
+  applyTheme();
 }

@@ -39,5 +39,5 @@ export interface CommentConfig {
   valine?: ValineConfig;
   gitalk?: GitalkConfig;
   giscus?: GiscusConfig;
-  asset_version?: string | number; // 主题资源版本号,用于 giscus 自定义 CSS 破缓存
+  asset_version?: string | number; // bundle 内容哈希(comments.pug 经 asset_version helper 注入),用于 giscus 自定义 CSS 破缓存
 }

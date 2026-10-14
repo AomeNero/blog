@@ -4,6 +4,7 @@ import './scss/highlight.scss';
 import './scss/style.scss';
 
 import { AomeNero } from './aomenero/aomenero';
+import { followSystem } from './aomenero/theme-mode';
 import FloatBtn from './components/float-btn';
 import * as Utils from './utils/main';
 import './components/rightbtn';
@@ -12,5 +13,6 @@ import Avatar from './components/avatar';
 (window as any).AomeNero = AomeNero;
 (window as any).Utils = Utils;
 
+followSystem();
 new FloatBtn();
 new Avatar();
