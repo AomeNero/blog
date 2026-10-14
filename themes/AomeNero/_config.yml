@@ -114,9 +114,7 @@ banner_radius: 10px # 文章 banner 圆角;设为 0 恢复直角,支持任意 CS
 # 评论
 always_enable_comments: false # 始终启用评论
 
-duoshuo:
-disqus:
-gentie:
+disqus: # Disqus shortname,填了即启用(评论框由模板内联脚本自挂载,无需 enable 键)
 # Valine 评论 https://valine.js.org
 valine:
   enable: false # 如需使用 Valine,请设为 true 并填入 appid/appkey(空凭据会渲染出不可用的评论框)
@@ -126,12 +124,6 @@ valine:
   verify: false # true/false:验证码
   avatar: mm # 头像样式 https://github.com/xCss/Valine/wiki/avatar-setting-for-valine
   placeholder: hello, world # 评论框占位文字
-gitment:
-  enable: false
-  owner: 'Your GitHub ID'
-  repo: 'Repo to store comments'
-  client_id: 'Your client ID'
-  client_secret: 'Your client secret'
 gitalk:
   enable: false
   owner: 'Your GitHub ID'

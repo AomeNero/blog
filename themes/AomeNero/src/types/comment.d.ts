@@ -11,15 +11,6 @@ interface ValineConfig {
   avatar: string;
 }
 
-interface GitmentConfig {
-  enable: boolean;
-  owner: string;
-  repo: string;
-  client_id: string;
-  client_secret: string;
-  id: string;
-}
-
 interface GitalkConfig {
   enable: boolean;
   owner: string;
@@ -46,7 +37,6 @@ interface GiscusConfig {
 
 export interface CommentConfig {
   valine?: ValineConfig;
-  gitment?: GitmentConfig;
   gitalk?: GitalkConfig;
   giscus?: GiscusConfig;
   asset_version?: string | number; // 主题资源版本号,用于 giscus 自定义 CSS 破缓存

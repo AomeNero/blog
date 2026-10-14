@@ -18,7 +18,7 @@ AomeNero 的个人博客主题。前端 JS 打包后仅约 40KB，加载极快�
 - 多语言（I18n）支持
 - 可选搜索框（基于 Fuse.js 模糊搜索）
 - 可选标签云
-- 评论系统支持（Giscus / Valine / Gitalk / Gitment 等，见 `_config.yml`）
+- 评论系统支持（Giscus / Valine / Gitalk / Disqus，见 `_config.yml`）
 - Ajax 无刷新切换页面，减少视觉噪音
 - 移动端适配
 - 文章版权声明、字数统计、社交账号、备案号、百度统计
@@ -53,11 +53,13 @@ cd themes/AomeNero && npm i && npm run build   # 构建产物 js_complied 不入
 
 ## 配置
 
-复制 `_config.example.yml` 为 `_config.yml`，并在 Hexo 根目录的 `_config.yml` 中设置：
+在 Hexo 根目录的 `_config.yml` 中设置：
 
 ```yaml
 theme: AomeNero
 ```
+
+主题自带 `_config.yml` 即全部配置项的模板（每项有中文注释，无个人信息）。个性化请写在根目录 `_config.AomeNero.yml`（同名键覆盖），不要直接改主题文件，便于升级。
 
 ## 开发
 
