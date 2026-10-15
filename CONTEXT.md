@@ -14,3 +14,5 @@
 ## 布局约定
 
 - 领域决策记录在 `docs/adr/`；issue 与规格见 `docs/agents/issue-tracker.md`。
+- 主题 `themes/AomeNero` 是独立 pnpm 子包（自带 package.json / tsconfig / vitest）：`pnpm test`、`pnpm check`（tsc）、`pnpm build` 均在主题目录内运行。构建产物 `source/js_complied/` 已 gitignore，`hexo g` 不构建前端——新 clone 或改完 `src/` 后先在主题目录 `pnpm build`，否则页面 JS/CSS 404。
+- 用户可见文案一律定义在 `languages/*.yml`，由模板经 `__()` 取出注入组件（注入模式见 `layout/partial/components/search.pug` 的 translation JSON）；`src/` 源码中不硬编码文案。
